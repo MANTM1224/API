@@ -6,6 +6,22 @@
     <title>Tu carrito</title>
 </head>
 <body>
-    
+    <div class="carrito-container">
+        <h1>Tu carrito de compras</h1>
+        <div class="carrito-items">
+            <% if(carrito.length === 0) { %>
+                <p>Tu carrito está vacío.</p>
+            <% } else { %>
+                <% carrito.forEach(function(item) { %>
+                    <div class="carrito-item">
+                        <h2><%= item.nombre %></h2>
+                        <p>Cantidad: <%= item.cantidad %></p>
+                        <p>Precio: $<%= item.precio %></p>
+                    </div>
+                <% }); %>
+            <% } %>
+            <button id="checkout-button">Proceder al pago</button>
+        </div>
+    </div>
 </body>
 </html>
