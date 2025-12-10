@@ -11,17 +11,17 @@
         <form action="/crearAcc" method="POST">
             <div class="form-group">
                 <label for="username">Nombre de usuario:</label>
-                <input type="text" id="username" name="username" onkeypress="" required value="<%= user.nombre %>">
+                <input type="text" id="username" name="username" onkeypress="verificar(event)" required value="<%= user.nombre %>">
             </div>
             <div class="form-group">
                 <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" onkeypress="" required value="<%= user.password %>">
+                <input type="password" id="password" name="password" onkeypress="verificar(event)" required value="<%= user.password %>">
             </div>
             <div class="form-group">
                 <label for="confirmPassword">Confirmar contraseña:</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" onkeypress="" required value="<%= user.password %>">
+                <input type="password" id="confirmPassword" name="confirmPassword" onkeypress="verificar(event)" required value="<%= user.password %>">
             </div>
-            <button type="submit" onsubmit="">Guardar cambios</button>
+            <button type="submit" onsubmit="return validarEditarCuenta()">Guardar cambios</button>
         </form>
         <a href="" class="btn-regresar" >Cancelar</a>
     </div>
