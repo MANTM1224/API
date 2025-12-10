@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu historial de compras</title>
+    <link rel="stylesheet" href="../public/css/styles.css">
+</head>
+<body>
+    <div class="container-carrito">
+        <h1>Historial de Compras</h1>
+        <div class="carrito-items">
+            <% if(historial.length === 0) { %>
+                <p>No has realizado ninguna compra aún.</p>
+            <% } else { %>
+                <% historial.forEach(function(compra) { %>
+                    <div class="compra">
+                        <h2>Compra ID: <%= compra.id %></h2>
+                        <p>Fecha: <%= compra.fecha %></p>
+                        <ul>
+                            <% compra.items.forEach(function(item) { %>
+                                <li><%= item.nombre %> - Cantidad: <%= item.cantidad %> - Precio: $<%= item.precio %></li>
+                            <% }); %>
+                        </ul>
+                        <p>Total: $<%= compra.total %></p>
+                    </div>
+                <% }); %>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

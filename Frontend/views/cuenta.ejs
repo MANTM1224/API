@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu cuenta</title>
+    <link rel="stylesheet" href="../public/css/styles.css">
+</head>
+<body>
+    <div class="container-account">
+        <h1>Tu cuenta</h1>
+        <div class="account-details">
+            <p><strong>Nombre:</strong> <%= user.nombre %></p>
+            <p><strong>Email:</strong> <%= user.email %></p>
+            <p><strong>Fecha de registro:</strong> <%= user.fechaRegistro.toDateString() %></p>
+        </div>            
+        <a href="">Editar cuenta</a>
+        <a href="">Cerrar sesión</a>
+    </div>
+    <a href="">Regresar a la tienda</a>
+</body>
+</html>
