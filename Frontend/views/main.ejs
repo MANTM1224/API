@@ -6,6 +6,18 @@
     <title>Tienda de</title>
 </head>
 <body>
-    
+    <h1>Nuestros productos:</h1>
+    <div class="container-productos">
+        <% productos.forEach(function(producto) { %>
+            <div class="caja-producto">
+                <div class="definicion-producto">
+                    <h2><%= producto.nombre %></h2>
+                    <p>Precio: $<%= producto.precio %></p>
+                    <p>Descripcion: <%= producto.descripcion %></p>
+                </div>
+                <button class="agregar-carrito" data-id="<%= producto.id %>">Agregar al carrito</button>
+            </div>
+        <% }); %>
+    </div>
 </body>
 </html>
