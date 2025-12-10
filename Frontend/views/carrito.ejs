@@ -17,10 +17,12 @@
                         <h2><%= item.nombre %></h2>
                         <p>Cantidad: <%= item.cantidad %></p>
                         <p>Precio: $<%= item.precio %></p>
+                        <p>Categoria: <%= item.categoria %></p>
                     </div>
                 <% }); %>
             <% } %>
-            <button id="checkout-button">Proceder al pago</button>
+            <button id="clear-cart-btn">Vaciar carrito</button>
+            <button id="checkout-btn">Proceder al pago</button>
         </div>
     </div>
 </body>

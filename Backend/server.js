@@ -1,5 +1,7 @@
 import express from 'express';
 import path from 'path';
+import dotenv from 'dotenv';
+import ejs from 'ejs';
 //aqui nosotros tenemos que agregar las rutas que se van a consumir
 import productroutes from './routes/productroutes.js';
 
@@ -14,11 +16,12 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname,  '../Frontend', 'public')));
 
 app.set('views engine', 'ejs');
-app.set('public', path.join(__dirname, '../Frontend', 'public'));
-
+app.set('views', path.join(__dirname, '../Frontend', 'views'));
+console.log(path.join(__dirname, '../Frontend', 'views'));
+app.use('/css', express.static(path.join(__dirname, '../Frontend/public', 'css')));
 //vamos a consumir las rutas
 app.use('/',(req, res) => {
- res.sendFile(path.join(__dirname, '../Frontend', 'public', 'index.html'));
+ res.render('index.ejs');
 } 
     
 );
