@@ -15,14 +15,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname,  '../Frontend', 'public')));
 
-app.set('views engine', 'ejs');
+app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../Frontend', 'views'));
-console.log(path.join(__dirname, '../Frontend', 'views'));
+
 app.use('/css', express.static(path.join(__dirname, '../Frontend/public', 'css')));
+
+
 //vamos a consumir las rutas
 app.use('/',(req, res) => {
- res.render('index.ejs');
+return res.render('main.ejs');
 } 
+
     
 );
 
