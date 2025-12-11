@@ -9,22 +9,22 @@
 <body>
     <div class="container-form">
         <h2>Edita tu cuenta</h2>
-        <form action="/crearAcc" method="POST">
+        <form action="/editarAcc" method="POST">
             <div class="form-group">
                 <label for="username">Nombre de usuario:</label>
-                <input type="text" id="username" name="username" onkeypress="verificar(event)" required value="<%= user.nombre %>">
+                <input type="text" id="username" name="username" onkeypress="verificar(event)" required value="<%= usuario.UserName %>">
             </div>
             <div class="form-group">
                 <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" onkeypress="verificar(event)" required value="<%= user.password %>">
+                <input type="password" id="password" name="password" onkeypress="verificar(event)" required value="<%= usuario.Contraseña %>">
             </div>
             <div class="form-group">
                 <label for="confirmPassword">Confirmar contraseña:</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" onkeypress="verificar(event)" required value="<%= user.password %>">
+                <input type="password" id="confirmPassword" name="confirmPassword" onkeypress="verificar(event)" required value="<%= usuario.Contraseña %>">
             </div>
             <button type="submit" onsubmit="return validarEditarCuenta()">Guardar cambios</button>
         </form>
-        <a href="" class="btn-regresar" >Cancelar</a>
+        <a href="/views/cuenta" class="btn-regresar" >Cancelar</a>
     </div>
 </body>
 </html>
