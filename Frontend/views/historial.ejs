@@ -19,7 +19,9 @@
                         <p>Fecha: <%= compra.fecha %></p>
                         <ul>
                             <% compra.items.forEach(function(item) { %>
-                                <li><%= item.nombre %> - Cantidad: <%= item.cantidad %> - Precio: $<%= item.precio %></li>
+                                <li>
+                                    <%= item.nombre %> - Cantidad: <%= item.cantidad %> - Precio: $<%= item.precio %> - Categoria: <%= item.categoria %>
+                                </li>
                             <% }); %>
                         </ul>
                         <p>Total: $<%= compra.total %></p>

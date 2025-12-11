@@ -12,21 +12,21 @@
         <form action="/crearAcc" method="POST">
             <div class="form-group">
                 <label for="username">Nombre de usuario:</label>
-                <input type="text" id="username" name="username" onkeypress="" required>
+                <input type="text" id="username" name="username" onkeypress="verificar(event)" required>
             </div>
             <div class="form-group">
                 <label for="email">Correo electrónico:</label>
-                <input type="email" id="email" name="email" onkeypress="" required>
+                <input type="email" id="email" name="email" onkeypress="verificarCorreoE(event)" required>
             </div>
             <div class="form-group">
                 <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" onkeypress="" required>
+                <input type="password" id="password" name="password" onkeypress="verificar(event)" required>
             </div>
             <div class="form-group">
                 <label for="confirmPassword">Confirmar contraseña:</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" onkeypress="" required>
+                <input type="password" id="confirmPassword" name="confirmPassword" onkeypress="verificar(event)" required>
             </div>
-            <button type="submit" onsubmit="">Crear cuenta</button>
+            <button type="submit" onsubmit="return validarCrearCuenta()">Crear cuenta</button>
             <div><h3>Tienes una cuenta? <a href="" class="btn-iniciarss">Inicia sesión</a></h3></div>
         </form>
         <a href="" class="btn-regresar" >Regresar a la bienvenida</a>
