@@ -17,18 +17,18 @@ app.use(express.static(path.join(__dirname,  '../Frontend', 'public')));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../Frontend', 'views'));
-
-app.use('/css', express.static(path.join(__dirname, '../Frontend/public', 'css')));
+console.log(path.join(__dirname, '../Frontend', 'views'));
+app.use('/css', express.static(path.join(__dirname, '../Frontend/public/css')));
 
 
 //vamos a consumir las rutas
 app.use('/',(req, res) => {
-return res.render('main.ejs');
+    res.sendFile(path.join(__dirname, '../Frontend', 'views', 'bienvenida.html'));
 } 
 
     
 );
 
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en el puerto ${PORT}`);
+    console.log(`Servidor corriendo en el puerto http://localhost:${PORT}`);
 });

@@ -15,14 +15,14 @@ const config = mysql.createPool({
     host : 'localhost',
     user : 'root',
     password : 'n0m3l0',
-    database : 'curso',
+    database : 'api',
 
     //connectionLimit : 10,
     //acquireTimeout : 30000,
     //idleTimeout : 30000,
 });
 
-config.getConnection((err) => {
+config.getConnection((err,connection) => {
     if(err){
         console.log('Error de conexion a la base de datos', err);
         return;

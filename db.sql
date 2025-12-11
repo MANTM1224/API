@@ -48,23 +48,16 @@ CREATE TABLE `api`.`inventario` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE `api`.`ventas` (
-  `ID` INT NOT NULL,
-  `usuario` INT NULL,
-  `fecha de compra` DATE NOT NULL,
-  `producto` INT NULL,
-  `cantidad` INT NULL,
-  `precio total` FLOAT NULL,
+CREATE TABLE `ventas` (
+  `ID` int NOT NULL,
+  `usuario` int NOT NULL,
+  `fecha de compra` date NOT NULL,
+  `producto` int NOT NULL,
+  `cantidad` int NOT NULL,
+  `precio total` float NOT NULL,
   PRIMARY KEY (`ID`),
-  INDEX `usuario_idx` (`usuario` ASC) VISIBLE,
-  INDEX `producto_idx` (`producto` ASC) VISIBLE,
-  CONSTRAINT `usuario`
-    FOREIGN KEY (`usuario`)
-    REFERENCES `api`.`usuario` (`ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `producto`
-    FOREIGN KEY (`producto`)
-    REFERENCES `api`.`inventario` (`ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+  KEY `usuario_idx` (`usuario`),
+  KEY `producto_idx` (`producto`),
+  CONSTRAINT `product` FOREIGN KEY (`producto`) REFERENCES `inventario` (`ID`),
+  CONSTRAINT `user` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
