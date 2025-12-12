@@ -14,7 +14,8 @@
                 <div class="definicion-producto">
                     <h2><%= producto.nombre %></h2>
                     <p>Precio: $<%= producto.precio %></p>
-                    <p>Categoria: <%= producto.categoria %></p>
+                    <p>Categoria: <%= producto.categoria%></p>
+                    <p>Stock: <%= producto.stock %></p>
                 </div>
                 <button class="agregar-carrito" data-id="<%= producto.id %>">Agregar al carrito</button>
             </div>

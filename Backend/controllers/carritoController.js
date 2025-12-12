@@ -14,15 +14,7 @@ async function agregarArticulos(req,res) {
     res.status(200).json(resultado);
 
 }
-async function VaciarCarrito(req, res) {
-    
-}
-async function EliminarProducto(req, res) {
-    
-}
-async function TraerCarrito(req, res) {
-    
-}
+
 
 // Implementación de las funciones faltantes y manejo de errores
 async function VaciarCarrito(req, res) {
