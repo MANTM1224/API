@@ -8,14 +8,15 @@
 </head>
 <body>
     <div class="header-actions">
-
-        <a href="/carrito/<%= usuarioID %>" class="btn-carrito">Ver Carrito</a>
-        <a href="/historial/<%= usuarioID %>" class="btn-historial">Ver Historial</a>
-        
-        <a href="/render/iniciarSs" class="btn-iniciar-sesion">Iniciar Sesión</a>
-
-
-        <a href="/cuenta/<%= usuarioID %>" class="btn-cuenta">Mi Cuenta</a>
+        <nav>
+            <% if(!usuarioID) { %>
+                <a href="/render/iniciarSs" class="btn-iniciar-sesion">Iniciar Sesión</a>   
+                <% } else { %>
+                    <a href="/carrito/<%= usuarioID %>" class="btn-carrito">Ver Carrito</a>
+                    <a href="/historial/<%= usuarioID %>" class="btn-historial">Ver Historial</a>
+                    <a href="/cuenta/<%= usuarioID %>" class="btn-cuenta">Mi Cuenta</a>
+            <% } %>
+        </nav>
     </div>
     
     <h1>Nuestros productos:</h1>
