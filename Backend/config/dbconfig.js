@@ -12,7 +12,7 @@ dotenv.config();
 
 const config = mysql.createPool({
 
-    host: '192.168.3.17',
+    host: 'localhost',
     user: 'root',
     password: 'n0m3l0',
     database: 'api',
