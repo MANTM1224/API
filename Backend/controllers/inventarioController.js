@@ -14,7 +14,7 @@ export const getInventario = async (req, res) => {
             stock: prod.Stock
         }));
         // Obtener usuarioID desde sessionStorage o parámetro si existe
-        const usuarioID = req.query.usuarioID || '1'; // Por defecto 1 si no hay sesión
+        const usuarioID = req.query.usuarioID ; // Por defecto 1 si no hay sesión
         res.render('main', { productos, usuarioID });
     } catch (error) {
         console.error("Error al cargar inventario:", error);
@@ -97,3 +97,4 @@ export const renderHistorial = async (req, res) => {
         res.status(500).send("Error interno del servidor");
     }
 };
+
