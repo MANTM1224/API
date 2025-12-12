@@ -1,5 +1,5 @@
 
-import sql from '../config/dbconfig';
+import sql from '../config/dbconfig.js';
 async function AgregarAlCarrito(usuarioID, NombreProducto, cantidad) {
 
     const obtenerProducto = async (NombreProducto) => {
@@ -54,7 +54,7 @@ async function AgregarAlCarrito(usuarioID, NombreProducto, cantidad) {
         });
     }
     const agregarCarritoQuery = async (usuarioID, Producto, total) => {
-        console.log('Producto encontrado:', product); // Debug 
+        console.log('Producto encontrado:', Producto); // Debug 
         const querry = 'INSERT INTO carrito (usuario, producto, cantidad, total) VALUES (?, ?, ?, ?)';
         sql.query(querry, [usuarioID.ID, Producto.ID, cantidad, total], (err, res) => {
             if (err) {
@@ -64,17 +64,17 @@ async function AgregarAlCarrito(usuarioID, NombreProducto, cantidad) {
         })
 
         const restarStockQuery = 'UPDATE inventario SET stock = stock - ? WHERE ID = ?';
-        sql.query(restarStockQuery, [cantidad, product.ID]);
+        sql.query(restarStockQuery, [cantidad, Producto.ID]);
     }
     const userID = await obtenerIDUsuario(usuarioID);
 
-       if (!userID.success) {
+    if (!userID.success) {
         return { success: false, message: userID.message };
     }
 
     const product = await obtenerProducto(NombreProducto);
 
- 
+
     if (!product.success) {
         return { success: false, message: product.message };
     }
@@ -110,10 +110,10 @@ async function EliminarProducto(carritoID, usuarioID) {
             console.error('Error al eliminar el producto del carrito:', err);
             return { success: false, message: 'Error al eliminar el producto del carrito' };
         }
-   const restarStockQuery = 'UPDATE inventario SET stock = stock + 1 WHERE ID = (SELECT producto FROM carrito WHERE ID = ?)';
-    sql.query(restarStockQuery, [carritoID]);
-    
-     return { success: true, message: 'Producto eliminado del carrito exitosamente' };
+        const restarStockQuery = 'UPDATE inventario SET stock = stock + 1 WHERE ID = (SELECT producto FROM carrito WHERE ID = ?)';
+        sql.query(restarStockQuery, [carritoID]);
+
+        return { success: true, message: 'Producto eliminado del carrito exitosamente' };
     });
 }
 
