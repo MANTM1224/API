@@ -34,6 +34,9 @@ app.use('/api/users', userRoutes);
 //vamos a consumir las rutas (página principal)
 app.use('/', inventarioroutes);
 
+
+    
+
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto http://localhost:${PORT}`);
 });
