@@ -16,12 +16,5 @@ const router = Router();
 router.get('/', getInventario);
 
 // Rutas de vistas
-router.get('/carrito/:usuarioID', renderCarrito);
-router.get('/cuenta/:usuarioID', renderCuenta);
-router.get('/editarCuenta/:usuarioID', renderEditarCuenta);
-router.get('/crearAcc', renderCrearAcc);
-router.get('/iniciarSs', renderIniciarSs);
-router.get('/manipularProductos', renderManipularProductos);
-router.get('/historial/:usuarioID', renderHistorial);
 
 export default router;

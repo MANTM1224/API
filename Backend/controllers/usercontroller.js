@@ -9,7 +9,8 @@ import {
 
 export async function CreateUser(req, res) {
     try {
-        const { username, password, email } = req.body;
+        const { username, password, email } = req.params;
+        console.log(req.params);
         if (!username || !password || !email) {
             return res.status(400).json({ error: 'Faltan datos requeridos' });
         }
