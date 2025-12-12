@@ -8,7 +8,7 @@ import productroutes from './routes/productroutes.js';
 import carritoroutes from './routes/carritoroutes.js';
 import inventarioroutes from './routes/inventarioroutes.js';
 import userRoutes from './routes/userRoutes.js';
-
+import renderRoutes from './routes/renderRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -29,10 +29,15 @@ app.use('/css', express.static(path.join(__dirname, '../Frontend/public/css')));
 app.use('/api/products', productroutes);
 app.use('/api/carrito', carritoroutes);
 app.use('/api/users', userRoutes);
+app.use('/users', userRoutes);
+app.use('/render',renderRoutes)
 
 
 //vamos a consumir las rutas (página principal)
 app.use('/', inventarioroutes);
+
+
+    
 
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto http://localhost:${PORT}`);
