@@ -9,7 +9,7 @@
 <body>
     <div class="container-form">
         <h2>Crear cuenta</h2>
-        <form id="registerForm" action="/" method="POST">
+        <form id="registerForm" action="/user/createUser" method="POST">
             <div class="form-group">
                 <label for="username">Nombre de usuario:</label>
                 <input type="text" id="username" name="username" required>
@@ -27,7 +27,7 @@
                 <input type="password" id="confirmPassword" name="confirmPassword" required>
             </div>
             <button type="submit">Crear cuenta</button>
-            <div><h3>Tienes una cuenta? <a href="/render/iniciarSs" class="btn-iniciarss">Inicia sesión</a></h3></div>
+            <div><h3>Tienes una cuenta? <a href="/iniciarSs" class="btn-iniciarss">Inicia sesión</a></h3></div>
         </form>
         <a href="/" class="btn-regresar">Regresar a la tienda</a>
     </div>

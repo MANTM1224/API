@@ -16,18 +16,11 @@
             <% } else { %>
                 <% ventas.forEach(function(compra) { %>
                     <div class="compra">
-                        <h2>Compra ID: <%= compra.ID %></h2>
-                        <p>Fecha de compra: <%= compra["fecha de compra"] %></p>
-                        <ul>
-                            <% if(compra.items && compra.items.length > 0) { %>
-                                <% compra.items.forEach(function(item) { %>
-                                    <li>
-                                        <%= item.Nombre %> - Cantidad: <%= item.cantidad %> - Precio: $<%= item.Precio %> - Categoria: <%= item.Categoria %>
-                                    </li>
-                                <% }); %>
-                            <% } %>
-                        </ul>
-                        <p>Total: $<%= compra["precio total"] %></p>
+                        <h2>Venta ID: <%= compra.ID %></h2>
+                        <p>Fecha de compra: <%= compra.fecha_de_compra %></p>
+                        <p>Producto: <%= compra.producto %></p>
+                        <p>Cantidad: <%= compra.cantidad %></p>
+                        <p>Precio total: $<%= compra.precio_total %></p>
                     </div>
                 <% }); %>
             <% } %>

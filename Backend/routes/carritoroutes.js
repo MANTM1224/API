@@ -15,4 +15,7 @@ router.delete('/vaciar/:usuarioID', carritoController.vaciarCarrito);
 // Eliminar 1 unidad de un producto del carrito (params: carritoID, usuarioID)
 router.delete('/producto/:carritoID/:usuarioID', carritoController.eliminarProducto);
 
+// Procesar pago
+router.post('/pagar/:usuarioID', carritoController.procesarPago);
+
 export default router;

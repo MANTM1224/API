@@ -1,5 +1,5 @@
 [9:22 p. m., 11/12/2025] delena: CREATE TABLE carrito (
-  ID int NOT NULL,
+  ID int NOT NULL AUTO_INCREMENT,
   usuario int NOT NULL,
   producto int NOT NULL,
   cantidad int NOT NULL,

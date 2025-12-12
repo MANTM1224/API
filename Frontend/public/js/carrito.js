@@ -1,6 +1,50 @@
 const usuarioIDElement = document.querySelector('[data-usuario-id]');
 const usuarioID = usuarioIDElement ? usuarioIDElement.getAttribute('data-usuario-id') : null;
 
+// Obtener carrito y renderizar (si existe contenedor)
+async function fetchCarrito() {
+    if (!usuarioID) return;
+    try {
+        const res = await fetch(`/api/carrito/${usuarioID}`);
+        const data = await res.json();
+        if (res.ok && data.success && data.data) {
+            const container = document.getElementById('carrito-container');
+            if (container) {
+                // Render básico
+                container.innerHTML = data.data.map(item => `
+                    <div class="carrito-item">
+                        <span>${item.Nombre} x ${item.cantidad}</span>
+                        <span>$${item.Precio}</span>
+                    </div>
+                `).join('');
+            }
+        }
+    } catch (err) {
+        console.error('Error al obtener carrito:', err);
+    }
+}
+
+// Agregar producto al carrito (NombreProducto y cantidad)
+async function agregarAlCarrito(NombreProducto, cantidad = 1) {
+    if (!usuarioID) { alert('Debes iniciar sesión para agregar al carrito'); return; }
+    try {
+        const res = await fetch(`/api/carrito/agregar/${usuarioID}/${encodeURIComponent(NombreProducto)}/${cantidad}`, { method: 'POST' });
+        const data = await res.json();
+        if (res.ok && data.success) {
+            alert('Producto agregado al carrito');
+            fetchCarrito();
+        } else {
+            alert(data.message || 'No se pudo agregar el producto');
+        }
+    } catch (err) {
+        console.error('Error agregarAlCarrito:', err);
+        alert('Error al agregar al carrito');
+    }
+}
+
+// Auto-cargar carrito si hay contenedor
+document.addEventListener('DOMContentLoaded', () => fetchCarrito());
+
 // Eliminar una unidad de un producto
 document.querySelectorAll('.eliminar-producto-btn').forEach(btn => {
     btn.addEventListener('click', async (e) => {
@@ -46,7 +90,7 @@ if (clearCartBtn) {
 
                 const data = await response.json();
 
-                if (data.success) {
+                if (data.message === 'Carrito vaciado exitosamente' || data.success) {
                     alert('Carrito vaciado exitosamente');
                     location.reload();
                 } else {
@@ -63,7 +107,21 @@ if (clearCartBtn) {
 // Proceder al pago (placeholder)
 const checkoutBtn = document.getElementById('checkout-btn');
 if (checkoutBtn) {
-    checkoutBtn.addEventListener('click', () => {
-        alert('Funcionalidad de pago en construcción');
+    checkoutBtn.addEventListener('click', async () => {
+        if (!usuarioID) { alert('Debes iniciar sesión para pagar'); return; }
+        if (!confirm('Confirmar pago y finalizar compra?')) return;
+        try {
+            const res = await fetch(`/api/carrito/pagar/${usuarioID}`, { method: 'POST' });
+            const data = await res.json();
+            if (res.ok && data.success) {
+                alert('Pago procesado correctamente');
+                window.location.href = `/historial/${usuarioID}`;
+            } else {
+                alert(data.message || 'Error al procesar el pago');
+            }
+        } catch (err) {
+            console.error('Error procesar pago:', err);
+            alert('Error al procesar el pago');
+        }
     });
 }

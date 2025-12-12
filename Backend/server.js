@@ -29,9 +29,9 @@ app.use('/css', express.static(path.join(__dirname, '../Frontend/public/css')));
 
 
 
-app.use('/render', renderRoutes);
+app.use('/', renderRoutes);
 app.use('/user', userRoutes);
-app.use('/carrito', carritoRoutes);
+app.use('/api/carrito', carritoRoutes);
 
 //vamos a consumir las rutas (página principal)
 app.use('/', inventarioroutes);
