@@ -1,4 +1,4 @@
-import carrito from '../models/CarritoModel'
+import * as carrito from '../models/CarritoModel.js'
 
 async function agregarArticulos(req,res) {
     console.log('Parametros recibidos:', req.params);

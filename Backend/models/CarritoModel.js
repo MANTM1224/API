@@ -1,5 +1,5 @@
 
-import sql from '../config/dbconfig';
+import sql from '../config/dbconfig.js';
 async function AgregarAlCarrito(usuarioID, NombreProducto, cantidad) {
 
     const obtenerProducto = async (NombreProducto) => {
