@@ -9,7 +9,7 @@
 <body>
     <div class="carrito-container">
         <h1>Tu carrito de compras</h1>
-        <a href="/" class="btn-regresar">Regresar a la tienda</a>
+        <a href="/?usuarioID=<%= usuarioID %>" class="btn-regresar">Regresar a la tienda</a>
         <div class="carrito-items">
             <% if(!carrito || carrito.length === 0) { %>
                 <p>Tu carrito está vacío.</p>
@@ -28,5 +28,8 @@
             <button id="checkout-btn">Proceder al pago</button>
         </div>
     </div>
+
+    <div data-usuario-id="<%= usuarioID %>" style="display:none;"></div>
+    <script src="/js/carrito.js"></script>
 </body>
 </html>

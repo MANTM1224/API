@@ -13,9 +13,9 @@
             <p><strong>Nombre:</strong> <%= usuario.UserName %></p>
             <p><strong>Email:</strong> <%= usuario.Correo %></p>
         </div>            
-        <a href="">Editar cuenta</a>
-        <a href="">Cerrar sesión</a>
+        <a href="/editarCuenta/<%= usuario.ID %>">Editar cuenta</a>
+        <a href="/iniciarSs">Cerrar sesión</a>
     </div>
-    <a href="">Regresar a la tienda</a>
+    <a href="/?usuarioID=<%= usuario.ID %>">Regresar a la tienda</a>
 </body>
 </html>

@@ -10,6 +10,7 @@
     <div class="header-actions">
         <a href="/carrito/<%= usuarioID %>" class="btn-carrito">Ver Carrito</a>
         <a href="/historial/<%= usuarioID %>" class="btn-historial">Ver Historial</a>
+        <a href="/cuenta/<%= usuarioID %>" class="btn-cuenta">Mi Cuenta</a>
     </div>
     
     <h1>Nuestros productos:</h1>
@@ -31,5 +32,8 @@
         <% }); %>
         <% } %>
     </div>
+
+    <div data-usuario-id="<%= usuarioID %>" style="display:none;"></div>
+    <script src="/js/main.js"></script>
 </body>
 </html>
