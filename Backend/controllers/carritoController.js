@@ -1,3 +1,4 @@
+import * as carrito from '../models/CarritoModel.js'
 
 import { AgregarAlCarrito, VaciarCarrito, EliminarProducto, TraerCarrito } from '../models/CarritoModel.js';
 async function agregarArticulos(req, res) {
@@ -12,6 +13,8 @@ async function agregarArticulos(req, res) {
     const resultado = await AgregarAlCarrito(usuarioID, NombreProducto, parseInt(cantidad));
     res.status(200).json(resultado);
 }
+
+
 // Implementación de las funciones faltantes y manejo de errores
 async function vaciarCarrito(req, res) {
     try {
