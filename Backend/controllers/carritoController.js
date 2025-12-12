@@ -1,8 +1,7 @@
 import carrito from '../models/CarritoModel'
 
-async function agregarArticulos(req,res) {
+async function agregarArticulos(req, res) {
     console.log('Parametros recibidos:', req.params);
-
     const { usuarioID, NombreProducto, cantidad } = req.params;
     if (!usuarioID || !NombreProducto || !cantidad) {
         return res.status(400).json({ success: false, message: 'Faltan parametros' });
@@ -12,18 +11,7 @@ async function agregarArticulos(req,res) {
     }
     const resultado = await carrito.AgregarAlCarrito(usuarioID, NombreProducto, parseInt(cantidad));
     res.status(200).json(resultado);
-
 }
-async function VaciarCarrito(req, res) {
-    
-}
-async function EliminarProducto(req, res) {
-    
-}
-async function TraerCarrito(req, res) {
-    
-}
-
 // Implementación de las funciones faltantes y manejo de errores
 async function VaciarCarrito(req, res) {
     try {
