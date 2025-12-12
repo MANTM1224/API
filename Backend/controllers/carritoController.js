@@ -12,6 +12,11 @@ async function agregarArticulos(req, res) {
     const resultado = await AgregarAlCarrito(usuarioID, NombreProducto, parseInt(cantidad));
     res.status(200).json(resultado);
 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 962d933d420f6f71e7c4aed2038ab931664194e4
 // Implementación de las funciones faltantes y manejo de errores
 async function vaciarCarrito(req, res) {
     try {
