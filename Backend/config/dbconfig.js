@@ -11,22 +11,22 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const config = mysql.createPool({
-    
-    host : 'localhost',
-    user : 'root',
-    password : 'n0m3l0',
-    database : 'api',
+
+    host: '192.168.3.17',
+    user: 'root',
+    password: 'n0m3l0',
+    database: 'api',
 
     //connectionLimit : 10,
     //acquireTimeout : 30000,
     //idleTimeout : 30000,
 });
 
-config.getConnection((err,connection) => {
-    if(err){
+config.getConnection((err, connection) => {
+    if (err) {
         console.log('Error de conexion a la base de datos', err);
         return;
-    }   
+    }
     console.log('Conexion exitosa a la base de datos');
     connection.release();
 });

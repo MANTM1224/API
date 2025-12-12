@@ -5,16 +5,17 @@ import ejs from 'ejs';
 //aqui nosotros tenemos que agregar las rutas que se van a consumir
 import productroutes from './routes/productroutes.js';
 import carritoroutes from './routes/carritoroutes.js';
+import inventarioroutes from './routes/inventarioroutes.js';
 
 
 const app = express();
-const PORT = process.env.PORT || 3000;  
+const PORT = process.env.PORT || 3000;
 
 const __dirname = path.resolve(); // Obtener el directorio actual
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname,  '../Frontend', 'public')));
+app.use(express.static(path.join(__dirname, '../Frontend', 'public')));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../Frontend', 'views'));
@@ -27,9 +28,7 @@ app.use('/api/carrito', carritoroutes);
 
 
 //vamos a consumir las rutas (página principal)
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../Frontend', 'views', 'bienvenida.html'));
-});
+app.use('/', inventarioroutes);
 
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto http://localhost:${PORT}`);

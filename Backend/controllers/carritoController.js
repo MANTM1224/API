@@ -1,8 +1,8 @@
 import * as carrito from '../models/CarritoModel.js'
 
-async function agregarArticulos(req,res) {
+import { AgregarAlCarrito, VaciarCarrito, EliminarProducto, TraerCarrito } from '../models/CarritoModel.js';
+async function agregarArticulos(req, res) {
     console.log('Parametros recibidos:', req.params);
-
     const { usuarioID, NombreProducto, cantidad } = req.params;
     if (!usuarioID || !NombreProducto || !cantidad) {
         return res.status(400).json({ success: false, message: 'Faltan parametros' });
@@ -10,19 +10,18 @@ async function agregarArticulos(req,res) {
     if (isNaN(cantidad) || parseInt(cantidad) <= 0) {
         return res.status(400).json({ success: false, message: 'Cantidad invalida' });
     }
-    const resultado = await carrito.AgregarAlCarrito(usuarioID, NombreProducto, parseInt(cantidad));
+    const resultado = await AgregarAlCarrito(usuarioID, NombreProducto, parseInt(cantidad));
     res.status(200).json(resultado);
-
 }
 
 
 // Implementación de las funciones faltantes y manejo de errores
-async function VaciarCarrito(req, res) {
+async function vaciarCarrito(req, res) {
     try {
         const { usuarioID } = req.params;
         if (!usuarioID) return res.status(400).json({ success: false, message: 'Falta usuarioID' });
 
-        const resultado = await carrito.VaciarCarrito(usuarioID);
+        const resultado = await VaciarCarrito(usuarioID);
         if (!resultado) return res.status(500).json({ success: false, message: 'No se obtuvo respuesta del modelo' });
         return res.status(200).json(resultado);
     } catch (err) {
@@ -31,12 +30,12 @@ async function VaciarCarrito(req, res) {
     }
 }
 
-async function EliminarProducto(req, res) {
+async function eliminarProducto(req, res) {
     try {
         const { carritoID, usuarioID } = req.params;
         if (!carritoID || !usuarioID) return res.status(400).json({ success: false, message: 'Faltan parametros' });
 
-        const resultado = await carrito.EliminarProducto(carritoID, usuarioID);
+        const resultado = await EliminarProducto(carritoID, usuarioID);
         if (!resultado) return res.status(500).json({ success: false, message: 'No se obtuvo respuesta del modelo' });
         return res.status(200).json(resultado);
     } catch (err) {
@@ -45,12 +44,12 @@ async function EliminarProducto(req, res) {
     }
 }
 
-async function TraerCarrito(req, res) {
+async function traerCarrito(req, res) {
     try {
         const { usuarioID } = req.params;
         if (!usuarioID) return res.status(400).json({ success: false, message: 'Falta usuarioID' });
 
-        const resultado = await carrito.TraerCarrito(usuarioID);
+        const resultado = await TraerCarrito(usuarioID);
         if (!resultado) return res.status(500).json({ success: false, message: 'No se obtuvo respuesta del modelo' });
         return res.status(200).json(resultado);
     } catch (err) {
@@ -59,4 +58,4 @@ async function TraerCarrito(req, res) {
     }
 }
 
-export { agregarArticulos, VaciarCarrito, EliminarProducto, TraerCarrito };
+export { agregarArticulos, vaciarCarrito, eliminarProducto, traerCarrito };
