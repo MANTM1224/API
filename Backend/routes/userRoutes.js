@@ -1,20 +1,10 @@
 import { Router } from 'express';
-import { 
-    getInventario,
-    renderCarrito,
-    renderCuenta,
-    renderEditarCuenta,
-    renderCrearAcc,
-    renderIniciarSs,
-    renderManipularProductos,
-    renderHistorial
-} from '../controllers/inventarioController.js';
-
+import * as  usercontroller from '../controllers/usercontroller.js';
 const router = Router();
 
-// Página principal
-router.get('/', getInventario);
-
-// Rutas de vistas
+// Crear usuario
+router.post('/createUser', usercontroller.CreateUser);
+// Login
+router.post('/login', usercontroller.Loginuser);
 
 export default router;

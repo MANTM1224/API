@@ -4,11 +4,12 @@ import dotenv from 'dotenv';
 import ejs from 'ejs';
 //aqui nosotros tenemos que agregar las rutas que se van a consumir
 
-import productroutes from './routes/productroutes.js';
-import carritoroutes from './routes/carritoroutes.js';
+
+
 import inventarioroutes from './routes/inventarioroutes.js';
 import userRoutes from './routes/userRoutes.js';
 import renderRoutes from './routes/renderRoutes.js';
+import carritoRoutes from './routes/carritoroutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -26,12 +27,11 @@ app.use('/css', express.static(path.join(__dirname, '../Frontend/public/css')));
 
 // Registrar rutas de la API antes del handler de vistas
 
-app.use('/api/products', productroutes);
-app.use('/api/carrito', carritoroutes);
-app.use('/api/users', userRoutes);
-app.use('/users', userRoutes);
-app.use('/render',renderRoutes)
 
+
+app.use('/render', renderRoutes);
+app.use('/user', userRoutes);
+app.use('/carrito', carritoRoutes);
 
 //vamos a consumir las rutas (página principal)
 app.use('/', inventarioroutes);
