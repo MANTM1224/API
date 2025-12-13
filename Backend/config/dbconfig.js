@@ -10,7 +10,7 @@ import dotenv from 'dotenv';
 //dotenv.config({path: path.resolve(__dirname, '../.env')});
 dotenv.config();
 
-const config = mysql.createPool({
+const pool = mysql.createPool({
 
     host: 'localhost',
     user: 'root',
@@ -22,7 +22,7 @@ const config = mysql.createPool({
     //idleTimeout : 30000,
 });
 
-config.getConnection((err, connection) => {
+pool.getConnection((err, connection) => {
     if (err) {
         console.log('Error de conexion a la base de datos', err);
         return;
@@ -31,4 +31,5 @@ config.getConnection((err, connection) => {
     connection.release();
 });
 
-export default config;
+// Exportar la versión con promesas por defecto
+export default pool.promise();

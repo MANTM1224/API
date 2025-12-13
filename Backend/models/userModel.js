@@ -1,9 +1,22 @@
 import db from '../config/dbconfig.js';
 
 export async function crearUsuario({ username, password, email }) {
+    // Validar si el usuario ya existe
+    const sqlCheckUser = 'SELECT * FROM usuario WHERE UserName = ?';
+    const [userRows] = await db.execute(sqlCheckUser, [username]);
+    if (userRows.length > 0) {
+        return { message: 'Usuario ya existe', code: 'USER_EXISTS' };
+    }
+    // Validar si el correo ya existe
+    const sqlCheckEmail = 'SELECT * FROM usuario WHERE Correo = ?';
+    const [emailRows] = await db.execute(sqlCheckEmail, [email]);
+    if (emailRows.length > 0) {
+        return { message: 'Correo ya registrado', code: 'EMAIL_EXISTS' };
+    }
+    // Insertar usuario si no existe ni el username ni el correo
     const sql = 'INSERT INTO usuario (UserName, Contraseña, Correo) VALUES (?, ?, ?)';
     const [result] = await db.execute(sql, [username, password, email]);
-    return result.insertId;
+    return { message: 'Usuario creado', id: result.insertId };
 }
 
 export async function buscarUsuarioPorUsername(username) {

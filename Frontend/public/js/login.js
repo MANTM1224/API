@@ -5,7 +5,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     const password = document.getElementById('password').value;
 
     try {
-        const response = await fetch('/api/users/login', {
+        const response = await fetch('/user/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -15,14 +15,14 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
         const data = await response.json();
 
-        if (response.ok && data.usuario) {
+        if (response.ok && data.success) {
             alert('Login exitoso');
-            // Guardar el usuarioID en sessionStorage
             sessionStorage.setItem('usuarioID', data.usuario.ID);
-            // Redirigir a la tienda principal con el usuarioID
             window.location.href = `/?usuarioID=${data.usuario.ID}`;
         } else {
-            alert(data.error || 'Credenciales incorrectas');
+            // Mostrar mensaje detallado si está disponible
+            const message = data.error || data.details || 'Credenciales incorrectas';
+            alert(message);
         }
     } catch (error) {
         console.error('Error:', error);

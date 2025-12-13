@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda de</title>
+    <title>Tienda de Abarrotes</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <div class="header-actions">
         <nav>
             <% if(!usuarioID) { %>
-                <a href="/render/iniciarSs" class="btn-iniciar-sesion">Iniciar Sesión</a>   
+                <a href="/iniciarSs" class="btn-iniciar-sesion">Iniciar Sesión</a>   
                 <% } else { %>
                     <a href="/carrito/<%= usuarioID %>" class="btn-carrito">Ver Carrito</a>
                     <a href="/historial/<%= usuarioID %>" class="btn-historial">Ver Historial</a>

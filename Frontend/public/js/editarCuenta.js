@@ -13,7 +13,7 @@ document.getElementById('editAccountForm').addEventListener('submit', async (e) 
     }
 
     try {
-        const response = await fetch(`/api/users/${usuarioID}`, {
+        const response = await fetch(`/user/${usuarioID}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

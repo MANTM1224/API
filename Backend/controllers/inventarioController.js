@@ -62,9 +62,7 @@ export const renderEditarCuenta = async (req, res) => {
     }
 };
 
-export const renderCrearAcc = (req, res) => {
-    res.render('crearAcc');
-};
+
 
 export const renderIniciarSs = (req, res) => {
     res.render('iniciarSs');

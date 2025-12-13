@@ -1,13 +1,14 @@
 import db from '../config/dbconfig.js';
 
-export async function registrarVenta({ id, usuario, fecha, producto, cantidad, precioTotal }) {
-    const sql = 'INSERT INTO ventas (ID, usuario, `fecha de compra`, producto, cantidad, `precio total`) VALUES (?, ?, ?, ?, ?, ?)';
-    const [result] = await db.execute(sql, [id, usuario, fecha, producto, cantidad, precioTotal]);
+export async function registrarVenta({ usuario, fecha_de_compra, producto, cantidad, precio_total }) {
+    // Insertar sin ID (asumiendo que la tabla usa AUTO_INCREMENT)
+    const sql = 'INSERT INTO ventas (usuario, fecha_de_compra, producto, cantidad, precio_total) VALUES (?, ?, ?, ?, ?)';
+    const [result] = await db.execute(sql, [usuario, fecha_de_compra, producto, cantidad, precio_total]);
     return result.insertId;
 }
 
 export async function obtenerVentasPorUsuario(usuario) {
-    const sql = 'SELECT * FROM ventas WHERE usuario = ?';
+    const sql = 'SELECT * FROM ventas WHERE usuario = ? ORDER BY fecha_de_compra DESC';
     const [rows] = await db.execute(sql, [usuario]);
     return rows;
 }
