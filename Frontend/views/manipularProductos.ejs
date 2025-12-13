@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agrega, modifica o elimina productos</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>Agrega nuevos productos</h1>
+    <form id="addProductForm">
+        <label for="nombre">Nombre del producto:</label>
+        <input type="text" id="nombre" name="nombre" required><br>
+
+        <label for="precio">Precio:</label>
+        <input type="number" id="precio" name="precio" step="0.01" required><br>
+
+        <label for="categoryid">Categoría ID:</label>
+        <input type="number" id="categoryid" name="categoryid" required><br>
+
+        <label for="stock">Cantidad en stock:</label>
+        <input type="number" id="stock" name="stock" required><br>
+
+        <button type="submit">Agregar Producto</button>
+    </form>
+    
+    <h1>Modifica los productos</h1>
+    <div class="container-productos">
+        <% if(productos.length === 0) { %>
+            <p>No hay productos registrados en este momento.</p>
+        <% } else { %>
+            <% productos.forEach(function(item) { %>
+                <div class="caja-producto">
+                    <div class="definicion-producto">
+                        <h2><%= item.nombre %></h2>
+                        <p>Precio: $<%= item.precio %></p>
+                        <p>Categoria: <%= item.categoria %></p>
+                        <p>Cantidad disponible: <%= item.stock %></p>
+                    </div>
+                    <button class="btn-eliminar-producto" data-id="<%= item.ID %>">Eliminar el producto</button>
+                </div>
+        <% }); %>
+        <% } %>
+    </div>
+    <h2>Regresar <a href="/">a la tienda</a></h2>
+
+    <script src="/js/productos.js"></script>
+</body>
+</html>

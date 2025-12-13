@@ -4,27 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tu historial de compras</title>
-    <link rel="stylesheet" href="../public/css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <div class="container-carrito">
         <h1>Historial de Compras</h1>
+        <a href="/?usuarioID=<%= usuarioID %>" class="btn-regresar">Regresar a la tienda</a>
         <div class="carrito-items">
-            <% if(historial.length === 0) { %>
+            <% if(!ventas || ventas.length === 0) { %>
                 <p>No has realizado ninguna compra aún.</p>
             <% } else { %>
-                <% historial.forEach(function(compra) { %>
+                <% ventas.forEach(function(compra) { %>
                     <div class="compra">
-                        <h2>Compra ID: <%= compra.id %></h2>
-                        <p>Fecha: <%= compra.fecha %></p>
+                        <h2>Compra ID: <%= compra.ID %></h2>
+                        <p>Fecha de compra: <%= compra["fecha de compra"] %></p>
                         <ul>
-                            <% compra.items.forEach(function(item) { %>
-                                <li>
-                                    <%= item.nombre %> - Cantidad: <%= item.cantidad %> - Precio: $<%= item.precio %> - Categoria: <%= item.categoria %>
-                                </li>
-                            <% }); %>
+                            <% if(compra.items && compra.items.length > 0) { %>
+                                <% compra.items.forEach(function(item) { %>
+                                    <li>
+                                        <%= item.Nombre %> - Cantidad: <%= item.cantidad %> - Precio: $<%= item.Precio %> - Categoria: <%= item.Categoria %>
+                                    </li>
+                                <% }); %>
+                            <% } %>
                         </ul>
-                        <p>Total: $<%= compra.total %></p>
+                        <p>Total: $<%= compra["precio total"] %></p>
                     </div>
                 <% }); %>
             <% } %>
