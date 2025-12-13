@@ -3,22 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda de</title>
-    <link rel="stylesheet" href="../public/css/styles.css">
+    <title>Tienda de Abarrotes</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
+    <div class="header-actions">
+        <nav>
+            <% if(!usuarioID) { %>
+                <a href="/iniciarSs" class="btn-iniciar-sesion">Iniciar Sesión</a>   
+                <% } else { %>
+                    <a href="/carrito/<%= usuarioID %>" class="btn-carrito">Ver Carrito</a>
+                    <a href="/historial/<%= usuarioID %>" class="btn-historial">Ver Historial</a>
+                    <a href="/cuenta/<%= usuarioID %>" class="btn-cuenta">Mi Cuenta</a>
+            <% } %>
+        </nav>
+    </div>
+    
     <h1>Nuestros productos:</h1>
     <div class="container-productos">
-        <% productos.forEach(function(producto) { %>
-            <div class="caja-producto">
-                <div class="definicion-producto">
-                    <h2><%= producto.nombre %></h2>
-                    <p>Precio: $<%= producto.precio %></p>
-                    <p>Descripcion: <%= producto.descripcion %></p>
+        <% if(productos.length === 0) { %>
+            <p>No hay productos disponibles en este momento.</p>
+        <% } else { %>
+            <% productos.forEach(function(item) { %>
+                <div class="caja-producto">
+                    <div class="definicion-producto">
+                        <h2><%= item.nombre %></h2>
+                        <p>Precio: $<%= item.precio %></p>
+                        <p>Categoria: <%= item.categoria %></p>
+                        <p>Cantidad disponible: <%= item.stock %></p>
+                    </div>
+                    <input type="number" class="cantidad-input" data-nombre="<%= item.nombre %>" min="1" max="<%= item.stock %>" value="1">
+                    <button class="agregar-carrito" data-nombre="<%= item.nombre %>">Agregar al carrito</button>
                 </div>
-                <button class="agregar-carrito" data-id="<%= producto.id %>">Agregar al carrito</button>
-            </div>
         <% }); %>
+        <% } %>
     </div>
+
+    <div data-usuario-id="<%= usuarioID %>" style="display:none;"></div>
+    <script src="/js/main.js"></script>
 </body>
 </html>

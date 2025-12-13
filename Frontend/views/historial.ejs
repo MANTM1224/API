@@ -4,25 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tu historial de compras</title>
-    <link rel="stylesheet" href="../public/css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <div class="container-carrito">
         <h1>Historial de Compras</h1>
+        <a href="/?usuarioID=<%= usuarioID %>" class="btn-regresar">Regresar a la tienda</a>
         <div class="carrito-items">
-            <% if(historial.length === 0) { %>
+            <% if(!ventas || ventas.length === 0) { %>
                 <p>No has realizado ninguna compra aún.</p>
             <% } else { %>
-                <% historial.forEach(function(compra) { %>
+                <% ventas.forEach(function(compra) { %>
                     <div class="compra">
-                        <h2>Compra ID: <%= compra.id %></h2>
-                        <p>Fecha: <%= compra.fecha %></p>
-                        <ul>
-                            <% compra.items.forEach(function(item) { %>
-                                <li><%= item.nombre %> - Cantidad: <%= item.cantidad %> - Precio: $<%= item.precio %></li>
-                            <% }); %>
-                        </ul>
-                        <p>Total: $<%= compra.total %></p>
+                        <h2>Venta ID: <%= compra.ID %></h2>
+                        <p>Fecha de compra: <%= compra.fecha_de_compra %></p>
+                        <p>Producto: <%= compra.producto %></p>
+                        <p>Cantidad: <%= compra.cantidad %></p>
+                        <p>Precio total: $<%= compra.precio_total %></p>
                     </div>
                 <% }); %>
             <% } %>
