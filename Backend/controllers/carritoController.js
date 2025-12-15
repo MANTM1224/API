@@ -30,6 +30,8 @@ async function vaciarCarrito(req, res) {
         if (!usuarioID) return res.status(400).json({ success: false, message: 'Falta usuarioID' });
 
         const resultado = await VaciarCarrito(usuarioID);
+
+        console.log('Resultado de VaciarCarrito:', resultado);
         if (!resultado) return res.status(500).json({ success: false, message: 'No se obtuvo respuesta del modelo' });
         return res.status(200).json(resultado);
     } catch (err) {
@@ -41,9 +43,12 @@ async function vaciarCarrito(req, res) {
 async function eliminarProducto(req, res) {
     try {
         const { carritoID, usuarioID } = req.params;
+        console.log('Parametros recibidos en eliminarProducto:', { carritoID, usuarioID });
         if (!carritoID || !usuarioID) return res.status(400).json({ success: false, message: 'Faltan parametros' });
 
         const resultado = await EliminarProducto(carritoID, usuarioID);
+
+        console.log('Resultado de EliminarProducto:', resultado);
         if (!resultado) return res.status(500).json({ success: false, message: 'No se obtuvo respuesta del modelo' });
         return res.status(200).json(resultado);
     } catch (err) {
@@ -58,6 +63,7 @@ async function traerCarrito(req, res) {
         if (!usuarioID) return res.status(400).json({ success: false, message: 'Falta usuarioID' });
 
         const resultado = await TraerCarrito(usuarioID);
+        console.log('Resultado de TraerCarrito:', resultado);
         if (!resultado) return res.status(500).json({ success: false, message: 'No se obtuvo respuesta del modelo' });
         return res.status(200).json(resultado);
     } catch (err) {
