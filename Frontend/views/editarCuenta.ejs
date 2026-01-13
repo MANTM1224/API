@@ -9,7 +9,7 @@
 <body>
     <div class="container-form">
         <h2>Edita tu cuenta</h2>
-        <form id="editAccountForm" data-usuario-id="<%= usuario.ID %>">
+        <form id="editAccountForm" action="/editarCuenta/<%= usuario.ID %>" method="POST">
             <div class="form-group">
                 <label for="username">Nombre de usuario:</label>
                 <input type="text" id="username" name="username" required value="<%= usuario.UserName %>">
@@ -30,7 +30,5 @@
         </form>
         <a href="/cuenta/<%= usuario.ID %>" class="btn-regresar">Cancelar</a>
     </div>
-
-    <script src="/js/editarCuenta.js"></script>
 </body>
 </html>

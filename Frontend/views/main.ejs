@@ -32,14 +32,18 @@
                         <p>Categoria: <%= item.categoria %></p>
                         <p>Cantidad disponible: <%= item.stock %></p>
                     </div>
-                    <input type="number" class="cantidad-input" data-nombre="<%= item.nombre %>" min="1" max="<%= item.stock %>" value="1">
-                    <button class="agregar-carrito" data-nombre="<%= item.nombre %>">Agregar al carrito</button>
+                    <% if(usuarioID) { %>
+                        <form method="POST" action="/carrito/<%= usuarioID %>/agregar">
+                            <input type="hidden" name="NombreProducto" value="<%= item.nombre %>">
+                            <input type="number" name="cantidad" min="1" max="<%= item.stock %>" value="1" required>
+                            <button type="submit" class="agregar-carrito">Agregar al carrito</button>
+                        </form>
+                    <% } else { %>
+                        <a href="/iniciarSs" class="btn-iniciar-sesion">Inicia sesión para comprar</a>
+                    <% } %>
                 </div>
         <% }); %>
         <% } %>
     </div>
-
-    <div data-usuario-id="<%= usuarioID %>" style="display:none;"></div>
-    <script src="/js/main.js"></script>
 </body>
 </html>

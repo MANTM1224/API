@@ -34,28 +34,8 @@ async function parseResponse(res) {
     return data;
 }
 
-// Obtener carrito y renderizar (si existe contenedor)
-async function fetchCarrito() {
-    if (!usuarioID) return;
-    try {
-        const res = await fetch(`/api/carrito/${usuarioID}`);
-        const data = await res.json();
-        if (res.ok && data.success && data.data) {
-            const container = document.getElementById('carrito-container');
-            if (container) {
-                // Render básico
-                container.innerHTML = data.data.map(item => `
-                    <div class="carrito-item">
-                        <span>${item.Nombre} x ${item.cantidad}</span>
-                        <span>$${item.Precio}</span>
-                    </div>
-                `).join('');
-            }
-        }
-    } catch (err) {
-        console.error('Error al obtener carrito:', err);
-    }
-}
+// El carrito se renderiza desde el backend (EJS).
+// No hacemos fetch para “pintar” los artículos en el front.
 
 // Agregar producto al carrito (NombreProducto y cantidad)
 async function agregarAlCarrito(NombreProducto, cantidad = 1) {
@@ -65,7 +45,10 @@ async function agregarAlCarrito(NombreProducto, cantidad = 1) {
         const data = await parseResponse(res);
         if (res.ok && data.success) {
             alert(data.message || 'Producto agregado al carrito');
-            fetchCarrito();
+            // Si el usuario está viendo el carrito renderizado por backend, recarga para reflejar cambios.
+            if (document.querySelector('.carrito-container')) {
+                location.reload();
+            }
         } else {
             alert(data.message || `Error ${res.status}: ${res.statusText}`);
         }
@@ -74,9 +57,6 @@ async function agregarAlCarrito(NombreProducto, cantidad = 1) {
         alert('Error al agregar al carrito');
     }
 }
-
-// Auto-cargar carrito si hay contenedor
-document.addEventListener('DOMContentLoaded', () => fetchCarrito());
 
 // Eliminar una unidad de un producto
 document.querySelectorAll('.eliminar-producto-btn').forEach(btn => {
