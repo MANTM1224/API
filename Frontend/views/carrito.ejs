@@ -28,7 +28,7 @@
                 <p>Total a pagar: $<%= carrito.reduce((total, item) => total + item.Precio * item.cantidad, 0).toFixed(2) %></p>
             <% } %>
             <button id="clear-cart-btn">Vaciar carrito</button>
-            <button id="checkout-btn">Proceder al pago</button>
+            <button id="checkout-btn" onclick="window.location.href='/metodoPago/<%= usuarioID %>'">Proceder al pago</button>
         </div>
     </div>
 

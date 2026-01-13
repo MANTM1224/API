@@ -11,10 +11,12 @@
         <nav>
             <% if(!usuarioID) { %>
                 <a href="/iniciarSs" class="btn-iniciar-sesion">Iniciar Sesión</a>   
-                <% } else { %>
+                <% } else{ %>
                     <a href="/carrito/<%= usuarioID %>" class="btn-carrito">Ver Carrito</a>
                     <a href="/historial/<%= usuarioID %>" class="btn-historial">Ver Historial</a>
                     <a href="/cuenta/<%= usuarioID %>" class="btn-cuenta">Mi Cuenta</a>
+                <% } if(username === "Admin") { %>
+                    <a href="/productos" class="btn-productos">Administrar Productos</a>
             <% } %>
         </nav>
     </div>
