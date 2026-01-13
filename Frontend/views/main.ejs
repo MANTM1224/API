@@ -30,10 +30,14 @@
                         <h2><%= item.nombre %></h2>
                         <p>Precio: $<%= item.precio %></p>
                         <p>Categoria: <%= item.categoria %></p>
-                        <p>Cantidad disponible: <%= item.stock %></p>
+                        <p>Cantidad disponible: <%= item.stock >= 0 ? item.stock : 'No disponible' %></p>
                     </div>
-                    <input type="number" class="cantidad-input" data-nombre="<%= item.nombre %>" min="1" max="<%= item.stock %>" value="1">
-                    <button class="agregar-carrito" data-nombre="<%= item.nombre %>">Agregar al carrito</button>
+                    <% if (item.stock === 0 || item.stock === null || item.stock <= 0) { %>
+                        <p class="sin-stock">Sin stock disponible</p>
+                    <% } else { %>
+                        <input type="number" class="cantidad-input" data-nombre="<%= item.nombre %>" min="1" max="<%= item.stock %>" value="1">
+                        <button class="agregar-carrito" data-nombre="<%= item.nombre %>">Agregar al carrito</button>
+                    <% } %>
                 </div>
         <% }); %>
         <% } %>
