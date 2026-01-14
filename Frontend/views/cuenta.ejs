@@ -12,6 +12,7 @@
         <div class="account-details">
             <p><strong>Nombre:</strong> <%= usuario.UserName %></p>
             <p><strong>Email:</strong> <%= usuario.Correo %></p>
+            <p><strong>Fondos de la cuenta: </strong> <%= usuario.Fondos %></p>
         </div>            
         <a href="/editarCuenta/<%= usuario.ID %>">Editar cuenta</a>
         <a href="/iniciarSs">Cerrar sesión</a>

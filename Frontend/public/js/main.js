@@ -35,7 +35,6 @@ document.querySelectorAll('.agregar-carrito').forEach(btn => {
                 alert(data.message || 'Error al agregar producto');
             }
         } catch (error) {
-            console.error('Error:', error);
             alert('Error al agregar producto al carrito');
         }
     });

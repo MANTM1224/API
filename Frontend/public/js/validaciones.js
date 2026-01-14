@@ -15,10 +15,10 @@ function verificarCorreoE(e){
 }
 
 function validarCrearCuenta(){
-    var nombre = document.getElementById("nombre").value;
+    var nombre = document.getElementById("username").value;
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
-    var confirmarPassword = document.getElementById("confirmarPassword").value;
+    var confirmarPassword = document.getElementById("confirmPassword").value;
 
     const resUser = /^[A-Za-z0-9\d .]{3,50}$/;
     const resContra = /^[A-Za-z0-9\-_.,"#%]{6,20}$/;
