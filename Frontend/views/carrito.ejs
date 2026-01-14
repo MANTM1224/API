@@ -7,12 +7,21 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <div class="carrito-container">
+    <!-- Banner decorativo -->
+    <div class="page-banner">
+        <img src="/images/decorations/maceta-verde.png" alt="Decoración" onerror="this.style.display='none'">
         <h1>Tu carrito de compras</h1>
+        <img src="/images/decorations/regadera.png" alt="Decoración" onerror="this.style.display='none'">
+    </div>
+
+    <div class="carrito-container">
         <a href="/?usuarioID=<%= usuarioID %>" class="btn-regresar">Regresar a la tienda</a>
         <div class="carrito-items">
             <% if(!carrito || carrito.length === 0) { %>
-                <p>Tu carrito está vacío.</p>
+                <div class="empty-state">
+                    <img src="/images/decorations/macetas-variadas.png" alt="Carrito vacío" class="empty-state-image" onerror="this.style.display='none'">
+                    <p>Tu carrito está vacío.</p>
+                </div>
             <% } else { %>
                 <% carrito.forEach(function(item) { %>
                     <% if(item.cantidad > 0) { %>
@@ -36,6 +45,11 @@
                 <button id="checkout-btn" style="display: none;">Proceder al pago</button>
             <% } %>
         </div>
+    </div>
+
+    <!-- Decoración flotante lateral -->
+    <div class="side-decoration">
+        <img src="/images/decorations/planta-monstera.png" alt="Decoración" onerror="this.style.display='none'">
     </div>
 
     <div data-usuario-id="<%= usuarioID %>" style="display:none;"></div>
