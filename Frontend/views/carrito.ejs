@@ -29,7 +29,6 @@
                 <% }); %>
                 <p>Total a pagar: $<%= carrito.reduce((total, item) => total + item.Precio * item.cantidad, 0).toFixed(2) %></p>
             <% } %>
-           
             <select id="metodo-pago-select">
                 <option>Seleccionar metodo de pago </option>
                 <option id="Tarjeta-electronica" value="Tarjeta-electronica">Tarjeta de Credito/Debito</option>
