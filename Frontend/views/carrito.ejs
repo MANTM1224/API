@@ -15,33 +15,34 @@
                 <p>Tu carrito está vacío.</p>
             <% } else { %>
                 <% carrito.forEach(function(item) { %>
-                    <div class="carrito-item" data-carrito-id="<%= item.ID %>">
-                        <h2><%= item.Nombre %></h2>
-                        <p>Cantidad: <%= item.cantidad %></p>
-                        <p>Precio unitario: $<%= item.Precio %></p>
-                        <p>Total: $<%= (item.Precio * item.cantidad).toFixed(2) %></p>
-                        <form method="POST" action="/carrito/<%= usuarioID %>/eliminar/<%= item.ID %>" onsubmit="return confirm('¿Deseas eliminar una unidad de este producto?')">
-                            <button type="submit" class="eliminar-producto-btn">Eliminar 1</button>
-                        </form>
-                    </div>
+                    <% if(item.cantidad > 0) { %>
+                        <div class="carrito-item" data-carrito-id="<%= item.ID %>">
+                            <h2><%= item.Nombre %></h2>
+                            <p>Cantidad: <%= item.cantidad %></p>
+                            <p>Precio unitario: $<%= item.Precio %></p>
+                            <p>Total: $<%= (item.Precio * item.cantidad).toFixed(2) %></p>
+                            <form method="POST" action="/carrito/<%= usuarioID %>/eliminar/<%= item.ID %>" onsubmit="return confirm('¿Deseas eliminar una unidad de este producto?')">
+                                <button type="submit" class="eliminar-producto-btn">Eliminar 1</button>
+                            </form>
+                        </div>
+                    <% } %>
                 <% }); %>
                 <p>Total a pagar: $<%= carrito.reduce((total, item) => total + item.Precio * item.cantidad, 0).toFixed(2) %></p>
-             
-                <select id="metodo-pago-select">
-                    <option>Seleccionar metodo de pago </option>
-                    <option id="Tarjeta-electronica" value="Tarjeta-electronica">Tarjeta de Credito/Debito</option>
-                    <option id="Peypal" value="Peypal">Peypal</option>
-                    <option id="Otzo" value="Otzo">Otzo</option>
-                </select>
-                <button id="checkout-btn" style="display: none;">Proceder al pago</button>
             <% } %>
             <form method="POST" action="/carrito/<%= usuarioID %>/vaciar" onsubmit="return confirm('¿Estás seguro de que deseas vaciar tu carrito?')">
                 <button type="submit" id="clear-cart-btn">Vaciar carrito</button>
             </form>
+            <select id="metodo-pago-select">
+                <option>Seleccionar metodo de pago </option>
+                <option id="Tarjeta-electronica" value="Tarjeta-electronica">Tarjeta de Credito/Debito</option>
+                <option id="Peypal" value="Peypal">Peypal</option>
+                <option id="Otzo" value="Otzo">Otzo</option>
+            </select>
             <form method="POST" action="/carrito/<%= usuarioID %>/pagar" onsubmit="return confirm('Confirmar pago y finalizar compra?')">
                 <button type="submit" id="checkout-btn">Proceder al pago</button>
             </form>
         </div>
     </div>
+    <script src="/js/pagos.js"></script>
 </body>
 </html>
