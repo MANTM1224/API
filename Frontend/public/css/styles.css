@@ -753,3 +753,185 @@ form br {
 .scale-in {
     animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* ============================================
+   IMÁGENES DECORATIVAS
+   ============================================ */
+
+/* Contenedor para decoraciones en header */
+.header-decoration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--espaciado-md);
+    margin-bottom: var(--espaciado-lg);
+    flex-wrap: wrap;
+}
+
+.header-decoration img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    animation: floatBounce 3s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(45, 95, 63, 0.15));
+}
+
+/* Animaciones de rebote suave */
+@keyframes floatBounce {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-10px) scale(1.02);
+    }
+}
+
+/* Diferentes delays para crear efecto natural */
+.header-decoration img:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.header-decoration img:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.header-decoration img:nth-child(3) {
+    animation-delay: 1s;
+}
+
+/* Imagen decorativa para estados vacíos */
+.empty-state {
+    text-align: center;
+    padding: var(--espaciado-xl);
+    background-color: var(--fondo-claro);
+    border: 2px dashed var(--fondo-medio);
+    border-radius: var(--border-radius-lg);
+    margin: var(--espaciado-lg) 0;
+}
+
+.empty-state-image {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin: 0 auto var(--espaciado-md) auto;
+    display: block;
+    opacity: 0.7;
+    filter: drop-shadow(0 4px 12px rgba(45, 95, 63, 0.1));
+}
+
+.empty-state p {
+    color: var(--color-texto-secundario);
+    font-size: 1.1rem;
+    margin-top: var(--espaciado-sm);
+}
+
+/* Decoración lateral flotante */
+.side-decoration {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    z-index: 100;
+    pointer-events: none;
+    animation: gentleFloat 4s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+.side-decoration img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(45, 95, 63, 0.2));
+}
+
+@keyframes gentleFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-15px) rotate(2deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(-1deg);
+    }
+    75% {
+        transform: translateY(-12px) rotate(1deg);
+    }
+}
+
+/* Decoración en formularios */
+.form-decoration {
+    text-align: center;
+    margin-bottom: var(--espaciado-md);
+}
+
+.form-decoration img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+    filter: drop-shadow(0 4px 8px rgba(45, 95, 63, 0.15));
+}
+
+/* Banner decorativo con título */
+.page-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--espaciado-md);
+    margin-bottom: var(--espaciado-lg);
+    flex-wrap: wrap;
+}
+
+.page-banner img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    animation: subtleBounce 2s ease-in-out infinite;
+}
+
+@keyframes subtleBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.page-banner h1 {
+    margin: 0;
+}
+
+/* Responsive para decoraciones */
+@media screen and (max-width: 768px) {
+    .header-decoration img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .side-decoration {
+        width: 60px;
+        height: 60px;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .empty-state-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .page-banner img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .side-decoration {
+        display: none;
+    }
+}
