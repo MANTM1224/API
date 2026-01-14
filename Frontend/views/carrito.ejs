@@ -37,16 +37,16 @@
                     <% } %>
                 <% }); %>
                 <p>Total a pagar: $<%= carrito.reduce((total, item) => total + item.Precio * item.cantidad, 0).toFixed(2) %></p>
+                <select class="selector-pago" id="metodo-pago-select">
+                    <option>Seleccionar metodo de pago </option>
+                    <option id="Tarjeta-electronica" value="Tarjeta-electronica">Tarjeta de Credito/Debito</option>
+                    <option id="Peypal" value="Peypal">Peypal</option>
+                    <option id="Otzo" value="Otzo">Otzo</option>
+                </select>
+                <form method="POST" action="/carrito/<%= usuarioID %>/pagar" onsubmit="return confirm('Confirmar pago y finalizar compra?')">
+                    <button type="submit" id="checkout-btn">Proceder al pago</button>
+                </form>
             <% } %>
-            <select id="metodo-pago-select">
-                <option>Seleccionar metodo de pago </option>
-                <option id="Tarjeta-electronica" value="Tarjeta-electronica">Tarjeta de Credito/Debito</option>
-                <option id="Peypal" value="Peypal">Peypal</option>
-                <option id="Otzo" value="Otzo">Otzo</option>
-            </select>
-            <form method="POST" action="/carrito/<%= usuarioID %>/pagar" onsubmit="return confirm('Confirmar pago y finalizar compra?')">
-                <button type="submit" id="checkout-btn">Proceder al pago</button>
-            </form>
         </div>
     </div>
     <script src="/js/pagos.js"></script>
