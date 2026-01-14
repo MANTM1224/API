@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Agrega nuevos productos</h1>
-    <form id="addProductForm">
+    <form id="addProductForm" method="POST" action="/manipularProductos/agregar">
         <label for="nombre">Nombre del producto:</label>
         <input type="text" id="nombre" name="nombre" required><br>
 
@@ -37,13 +37,14 @@
                         <p>Categoria: <%= item.categoria %></p>
                         <p>Cantidad disponible: <%= item.stock %></p>
                     </div>
-                    <button class="btn-eliminar-producto" data-id="<%= item.ID %>">Eliminar el producto</button>
+                    <a href="/modificarProducto/<%= item.ID %>">test</a>
+                    <form method="POST" action="/manipularProductos/eliminar/<%= item.ID %>" onsubmit="return confirm('¿Eliminar este producto?')">
+                        <button type="submit" class="btn-eliminar-producto">Eliminar el producto</button>
+                    </form>
                 </div>
-        <% }); %>
+            <% }); %>
         <% } %>
     </div>
     <h2>Regresar <a href="/">a la tienda</a></h2>
-
-    <script src="/js/productos.js"></script>
 </body>
 </html>

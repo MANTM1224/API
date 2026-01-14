@@ -84,6 +84,10 @@ async function EliminarProducto(carritoID, usuarioID) {
 async function VaciarCarrito(UsuarioID) {
     try {
         await queryAsync('DELETE FROM carrito WHERE usuario = ?', [UsuarioID]);
+
+
+
+        
         return { success: true, message: 'Carrito vaciado exitosamente' };
     } catch (err) {
         console.error('Error VaciarCarrito:', err);

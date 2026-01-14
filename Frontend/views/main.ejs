@@ -10,19 +10,34 @@
     <div class="header-actions">
         <nav>
             <% if(!usuarioID) { %>
-                <a href="/iniciarSs" class="btn-iniciar-sesion">Iniciar Sesión</a>   
-                <% } else { %>
+                <a href="/iniciarSs" class="btn-iniciar-sesion">Iniciar Sesión</a>
+                <% } else{ %>
                     <a href="/carrito/<%= usuarioID %>" class="btn-carrito">Ver Carrito</a>
                     <a href="/historial/<%= usuarioID %>" class="btn-historial">Ver Historial</a>
                     <a href="/cuenta/<%= usuarioID %>" class="btn-cuenta">Mi Cuenta</a>
+                    
+                    <%  if(usuarioID === '0') { %>
+                    
+                        <a href="/manipularProductos" class="btn-productos">Administrar Productos</a>
+                    <% } %>
             <% } %>
         </nav>
     </div>
-    
+
+    <!-- Decoración del header -->
+    <div class="header-decoration">
+        <img src="/images/decorations/maceta-terracota.png" alt="Decoración" onerror="this.style.display='none'">
+        <img src="/images/decorations/planta-monstera.png" alt="Decoración" onerror="this.style.display='none'">
+        <img src="/images/decorations/maceta-verde.png" alt="Decoración" onerror="this.style.display='none'">
+    </div>
+
     <h1>Nuestros productos:</h1>
     <div class="container-productos">
         <% if(productos.length === 0) { %>
-            <p>No hay productos disponibles en este momento.</p>
+            <div class="empty-state">
+                <img src="/images/decorations/regadera.png" alt="Sin productos" class="empty-state-image" onerror="this.style.display='none'">
+                <p>No hay productos disponibles en este momento.</p>
+            </div>
         <% } else { %>
             <% productos.forEach(function(item) { %>
                 <div class="caja-producto">
@@ -30,16 +45,36 @@
                         <h2><%= item.nombre %></h2>
                         <p>Precio: $<%= item.precio %></p>
                         <p>Categoria: <%= item.categoria %></p>
-                        <p>Cantidad disponible: <%= item.stock %></p>
+                        <p>Cantidad disponible: <%= item.stock >= 0 ? item.stock : 'No disponible' %></p>
                     </div>
-                    <input type="number" class="cantidad-input" data-nombre="<%= item.nombre %>" min="1" max="<%= item.stock %>" value="1">
-                    <button class="agregar-carrito" data-nombre="<%= item.nombre %>">Agregar al carrito</button>
+                    <% if(usuarioID) { %>
+                        <form method="POST" action="/carrito/<%= usuarioID %>/agregar">
+                            <input type="hidden" name="NombreProducto" value="<%= item.nombre %>">
+                            <input type="number" name="cantidad" min="1" max="<%= item.stock %>" value="1" required>
+                            <button type="submit" class="agregar-carrito" onclick="agregarAlCarrito('<%= item.nombre %>', '<%= item.stock %>')">Agregar al carrito</button>
+                        </form>
+                    <% } else { %>
+                        <a href="/iniciarSs" class="btn-iniciar-sesion">Inicia sesión para comprar</a>
+                    <% } %>
                 </div>
         <% }); %>
         <% } %>
     </div>
 
-    <div data-usuario-id="<%= usuarioID %>" style="display:none;"></div>
-    <script src="/js/main.js"></script>
+    <script>
+        function agregarAlCarrito(productoID,stock) {
+            if(stock <= 0) {
+                alert('Producto no disponible en stock.');
+                return false;
+            }
+            alert('Su ' + productoID + ' ha sido agregado al carrito.');
+            return true;
+        }
+    </script>
+
+    <!-- Decoración flotante lateral -->
+    <div class="side-decoration">
+        <img src="/images/decorations/macetas-variadas.png" alt="Decoración" onerror="this.style.display='none'">
+    </div>
 </body>
 </html>

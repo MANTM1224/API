@@ -8,8 +8,15 @@
 </head>
 <body>
     <div class="container-form">
+        <!-- Decoración del formulario -->
+        <div class="form-decoration">
+            <img src="/images/decorations/maceta-terracota.png" alt="Decoración" onerror="this.style.display='none'">
+        </div>
         <h2>Crear cuenta</h2>
-        <form id="registerForm" action="/user/createUser" method="POST">
+        <form id="registerForm" action="/crearAcc" method="POST">
+            <% if (error) { %>
+                <p><%= error %></p>
+            <% } %>
             <div class="form-group">
                 <label for="username">Nombre de usuario:</label>
                 <input type="text" id="username" name="username" onkeypress="return verificar(event)" required>
@@ -32,7 +39,6 @@
         <a href="/" class="btn-regresar">Regresar a la tienda</a>
     </div>
 
-    <script src="/js/registro.js"></script>
     <script src="/js/validaciones.js"></script>
 </body>
 </html>
