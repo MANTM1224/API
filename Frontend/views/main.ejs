@@ -10,7 +10,7 @@
     <div class="header-actions">
         <nav>
             <% if(!usuarioID) { %>
-                <a href="/iniciarSs" class="btn-iniciar-sesion">Iniciar Sesión</a>   
+                <a href="/iniciarSs" class="btn-iniciar-sesion">Iniciar Sesión</a>
                 <% } else{ %>
                     <a href="/carrito/<%= usuarioID %>" class="btn-carrito">Ver Carrito</a>
                     <a href="/historial/<%= usuarioID %>" class="btn-historial">Ver Historial</a>
@@ -23,11 +23,21 @@
             <% } %>
         </nav>
     </div>
-    
+
+    <!-- Decoración del header -->
+    <div class="header-decoration">
+        <img src="/images/decorations/maceta-terracota.png" alt="Decoración" onerror="this.style.display='none'">
+        <img src="/images/decorations/planta-monstera.png" alt="Decoración" onerror="this.style.display='none'">
+        <img src="/images/decorations/maceta-verde.png" alt="Decoración" onerror="this.style.display='none'">
+    </div>
+
     <h1>Nuestros productos:</h1>
     <div class="container-productos">
         <% if(productos.length === 0) { %>
-            <p>No hay productos disponibles en este momento.</p>
+            <div class="empty-state">
+                <img src="/images/decorations/regadera.png" alt="Sin productos" class="empty-state-image" onerror="this.style.display='none'">
+                <p>No hay productos disponibles en este momento.</p>
+            </div>
         <% } else { %>
             <% productos.forEach(function(item) { %>
                 <div class="caja-producto">
@@ -61,5 +71,16 @@
             return true;
         }
     </script>
+<<<<<<< HEAD
+
+    <!-- Decoración flotante lateral -->
+    <div class="side-decoration">
+        <img src="/images/decorations/macetas-variadas.png" alt="Decoración" onerror="this.style.display='none'">
+    </div>
+
+    <div data-usuario-id="<%= usuarioID %>" style="display:none;"></div>
+    <script src="/js/main.js"></script>
+=======
+>>>>>>> 51e21b5fb4cca4465a7ac5147ca92ac04e7313db
 </body>
 </html>

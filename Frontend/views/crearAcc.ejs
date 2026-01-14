@@ -8,6 +8,10 @@
 </head>
 <body>
     <div class="container-form">
+        <!-- Decoración del formulario -->
+        <div class="form-decoration">
+            <img src="/images/decorations/maceta-terracota.png" alt="Decoración" onerror="this.style.display='none'">
+        </div>
         <h2>Crear cuenta</h2>
         <form id="registerForm" action="/crearAcc" method="POST">
             <% if (error) { %>
@@ -34,7 +38,6 @@
         </form>
         <a href="/" class="btn-regresar">Regresar a la tienda</a>
     </div>
-
 
     <script src="/js/validaciones.js"></script>
 </body>

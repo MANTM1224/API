@@ -1,19 +1,29 @@
-/* ============================================
-   VARIABLES CSS - PALETA DE COLORES Y FUENTES
-   ============================================ */
 :root {
-    /* Colores principales */
-    --color-primario: #b1e6d1;        /* Menta suave - Acentos/Highlights */
-    --color-secundario: #77b1a9;      /* Verde azulado medio - Botones/Enlaces */
-    --color-terciario: #3d7b80;       /* Cian oscuro - Bordes/Detalles */
-    --fondo-oscuro: #270a33;          /* Violeta muy oscuro - Fondo principal */
-    --fondo-medio: #451a3e;           /* Violeta medio - Contenedores */
+    /* ============================================
+       🌿 PALETA DE COLORES - TEMA PLANTAS
+       ============================================ */
     
-    /* Colores adicionales */
-    --color-texto: #ffffff;
-    --color-texto-secundario: #b1e6d1;
-    --color-error: #ff6b6b;
-    --color-exito: #51cf66;
+    /* Verdes principales */
+    --color-primario: #2D5F3F;        /* Verde bosque - Header y elementos principales */
+    --color-secundario: #4A7C59;      /* Verde medio - Botones y enlaces */
+    --color-terciario: #7BA585;       /* Verde claro - Hover states */
+    --color-acento: #A8D5BA;          /* Verde menta - Fondos sutiles */
+    
+    /* Neutros */
+    --blanco: #FFFFFF;                /* Fondo principal */
+    --fondo-claro: #F5F7F5;           /* Fondos alternativos */
+    --fondo-medio: #E8EDE8;           /* Contenedores y separadores */
+    
+    /* Texto */
+    --color-texto: #2C3E2C;           /* Texto principal */
+    --color-texto-secundario: #5A6C5A; /* Texto secundario */
+    --color-texto-claro: #7A8C7A;     /* Texto terciario */
+    
+    /* Colores de estado */
+    --color-error: #DC3545;           /* Errores y eliminación */
+    --color-exito: #51cf66;           /* Éxito */
+    --color-advertencia: #F4E6B8;     /* Advertencias y badges */
+    --color-cta: #C17C5B;             /* Call-to-Actions importantes */
     
     /* Fuentes */
     --fuente-principal: 'Inter', 'Roboto', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -30,16 +40,16 @@
     --border-radius-md: 12px;
     --border-radius-lg: 16px;
     
-    /* Sombras */
-    --sombra-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
-    --sombra-md: 0 4px 16px rgba(0, 0, 0, 0.2);
-    --sombra-lg: 0 8px 24px rgba(0, 0, 0, 0.3);
-    --sombra-glow: 0 0 20px rgba(177, 230, 209, 0.3);
+    /* Sombras sutiles */
+    --sombra-sm: 0 2px 8px rgba(45, 95, 63, 0.08);
+    --sombra-md: 0 4px 16px rgba(45, 95, 63, 0.1);
+    --sombra-lg: 0 8px 24px rgba(45, 95, 63, 0.12);
+    --sombra-hover: 0 8px 24px rgba(74, 124, 89, 0.15);
     
     /* Transiciones */
     --transicion-rapida: 0.2s ease;
-    --transicion-normal: 0.3s ease;
-    --transicion-lenta: 0.5s ease;
+    --transicion-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transicion-lenta: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ============================================
@@ -58,7 +68,7 @@ html {
 
 body {
     font-family: var(--fuente-principal);
-    background: linear-gradient(135deg, var(--fondo-oscuro) 0%, var(--fondo-medio) 100%);
+    background-color: var(--blanco);
     color: var(--color-texto);
     line-height: 1.6;
     min-height: 100vh;
@@ -66,7 +76,7 @@ body {
     position: relative;
 }
 
-/* Patrón de fondo decorativo */
+/* Patrón de fondo decorativo sutil */
 body::before {
     content: '';
     position: fixed;
@@ -75,8 +85,8 @@ body::before {
     width: 100%;
     height: 100%;
     background-image: 
-        radial-gradient(circle at 20% 50%, rgba(177, 230, 209, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(119, 177, 169, 0.05) 0%, transparent 50%);
+        radial-gradient(circle at 20% 50%, rgba(168, 213, 186, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(123, 165, 133, 0.05) 0%, transparent 50%);
     pointer-events: none;
     z-index: -1;
 }
@@ -95,12 +105,12 @@ h1 {
     font-size: clamp(1.75rem, 5vw, 2.5rem);
     text-align: center;
     margin-bottom: var(--espaciado-lg);
-    text-shadow: 0 2px 10px rgba(177, 230, 209, 0.3);
+    color: var(--color-primario);
 }
 
 h2 {
     font-size: clamp(1.25rem, 3vw, 1.75rem);
-    color: var(--color-primario);
+    color: var(--color-secundario);
 }
 
 h3 {
@@ -125,13 +135,16 @@ strong {
    NAVEGACIÓN Y HEADER
    ============================================ */
 .header-actions {
-    background: rgba(69, 26, 62, 0.7);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--color-terciario);
+    background-color: var(--color-primario);
     border-radius: var(--border-radius-md);
     padding: var(--espaciado-md);
     margin-bottom: var(--espaciado-lg);
     box-shadow: var(--sombra-md);
+    transition: box-shadow var(--transicion-normal);
+}
+
+.header-actions:hover {
+    box-shadow: var(--sombra-hover);
 }
 
 .header-actions nav {
@@ -154,7 +167,6 @@ a {
 
 a:hover {
     color: var(--color-primario);
-    text-shadow: 0 0 10px rgba(177, 230, 209, 0.5);
 }
 
 /* Botones base */
@@ -167,8 +179,8 @@ button,
 .agregar-carrito,
 .eliminar-producto-btn,
 .btn-eliminar-producto {
-    background: linear-gradient(135deg, var(--color-secundario), var(--color-terciario));
-    color: var(--color-texto);
+    background-color: var(--color-secundario);
+    color: var(--blanco);
     padding: var(--espaciado-xs) var(--espaciado-md);
     border: none;
     border-radius: var(--border-radius-sm);
@@ -188,37 +200,54 @@ button:hover,
 .btn-cuenta:hover,
 .btn-regresar:hover,
 .agregar-carrito:hover {
+    background-color: var(--color-primario);
     transform: translateY(-2px);
-    box-shadow: var(--sombra-md), var(--sombra-glow);
-    background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+    box-shadow: var(--sombra-md);
 }
 
 button:active {
     transform: translateY(0);
 }
 
+/* Botones en el header */
+.header-actions button,
+.header-actions a {
+    background-color: var(--blanco);
+    color: var(--color-primario);
+    opacity: 0.95;
+}
+
+.header-actions button:hover,
+.header-actions a:hover {
+    background-color: var(--color-acento);
+    opacity: 1;
+    color: var(--color-primario);
+}
+
 /* Botones de acción destructiva */
 .eliminar-producto-btn,
 .btn-eliminar-producto,
 #clear-cart-btn {
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    background-color: var(--color-error);
 }
 
 .eliminar-producto-btn:hover,
 .btn-eliminar-producto:hover,
 #clear-cart-btn:hover {
-    background: linear-gradient(135deg, #ff6b6b, #e74c3c);
+    background-color: #c82333;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.25);
 }
 
 /* Botón de checkout */
 #checkout-btn {
-    background: linear-gradient(135deg, var(--color-primario), #51cf66);
+    background-color: var(--color-cta);
     font-size: 1.1rem;
     padding: var(--espaciado-sm) var(--espaciado-lg);
 }
 
 #checkout-btn:hover {
-    box-shadow: 0 0 30px rgba(81, 207, 102, 0.5);
+    background-color: #a86a4f;
+    box-shadow: 0 6px 20px rgba(193, 124, 91, 0.3);
 }
 
 /* ============================================
@@ -243,14 +272,13 @@ button:active {
     }
 }
 
-/* Tarjetas de producto - Efecto Glassmorphism */
+/* Tarjetas de producto */
 .caja-producto {
-    background: rgba(69, 26, 62, 0.6);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--color-terciario);
+    background-color: var(--blanco);
+    border: 1px solid var(--fondo-medio);
     border-radius: var(--border-radius-md);
     padding: var(--espaciado-md);
-    box-shadow: var(--sombra-md);
+    box-shadow: var(--sombra-sm);
     transition: all var(--transicion-normal);
     display: flex;
     flex-direction: column;
@@ -259,6 +287,7 @@ button:active {
     overflow: hidden;
 }
 
+/* Efecto de brillo sutil al hacer hover */
 .caja-producto::before {
     content: '';
     position: absolute;
@@ -266,24 +295,23 @@ button:active {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(
-        45deg,
-        transparent,
-        rgba(177, 230, 209, 0.05),
-        transparent
+    background: radial-gradient(
+        circle,
+        rgba(168, 213, 186, 0.1) 0%,
+        transparent 70%
     );
-    transform: rotate(45deg);
-    transition: all var(--transicion-lenta);
+    transform: translate(-100%, -100%);
+    transition: transform var(--transicion-lenta);
 }
 
 .caja-producto:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--sombra-lg), var(--sombra-glow);
-    border-color: var(--color-primario);
+    transform: translateY(-4px);
+    box-shadow: var(--sombra-hover);
+    border-color: var(--color-terciario);
 }
 
 .caja-producto:hover::before {
-    left: 100%;
+    transform: translate(0, 0);
 }
 
 .definicion-producto {
@@ -303,9 +331,9 @@ button:active {
 /* Input de cantidad */
 .cantidad-input {
     padding: var(--espaciado-xs);
-    border: 2px solid var(--color-terciario);
+    border: 2px solid var(--fondo-medio);
     border-radius: var(--border-radius-sm);
-    background: rgba(39, 10, 51, 0.5);
+    background-color: var(--blanco);
     color: var(--color-texto);
     font-size: 1rem;
     text-align: center;
@@ -314,8 +342,8 @@ button:active {
 
 .cantidad-input:focus {
     outline: none;
-    border-color: var(--color-primario);
-    box-shadow: 0 0 0 3px rgba(177, 230, 209, 0.2);
+    border-color: var(--color-secundario);
+    box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.1);
 }
 
 /* ============================================
@@ -324,12 +352,11 @@ button:active {
 .carrito-container {
     max-width: 900px;
     margin: 0 auto;
-    background: rgba(69, 26, 62, 0.6);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--color-terciario);
+    background-color: var(--fondo-claro);
+    border: 1px solid var(--fondo-medio);
     border-radius: var(--border-radius-lg);
     padding: var(--espaciado-lg);
-    box-shadow: var(--sombra-lg);
+    box-shadow: var(--sombra-md);
 }
 
 .carrito-items {
@@ -340,8 +367,8 @@ button:active {
 }
 
 .carrito-item {
-    background: rgba(39, 10, 51, 0.5);
-    border: 1px solid var(--color-terciario);
+    background-color: var(--blanco);
+    border: 1px solid var(--fondo-medio);
     border-radius: var(--border-radius-md);
     padding: var(--espaciado-md);
     display: grid;
@@ -350,8 +377,8 @@ button:active {
 }
 
 .carrito-item:hover {
-    border-color: var(--color-primario);
-    box-shadow: var(--sombra-md);
+    border-color: var(--color-terciario);
+    box-shadow: var(--sombra-sm);
 }
 
 .carrito-item h2 {
@@ -369,12 +396,11 @@ button:active {
 .container-form {
     max-width: 500px;
     margin: 0 auto;
-    background: rgba(69, 26, 62, 0.6);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--color-terciario);
+    background-color: var(--blanco);
+    border: 1px solid var(--fondo-medio);
     border-radius: var(--border-radius-lg);
     padding: var(--espaciado-xl);
-    box-shadow: var(--sombra-lg);
+    box-shadow: var(--sombra-md);
     animation: slideIn 0.5s ease;
 }
 
@@ -423,9 +449,9 @@ form input[type="number"],
 form input[type="email"],
 form input[type="password"] {
     padding: var(--espaciado-sm);
-    border: 2px solid var(--color-terciario);
+    border: 2px solid var(--fondo-medio);
     border-radius: var(--border-radius-sm);
-    background: rgba(39, 10, 51, 0.5);
+    background-color: var(--blanco);
     color: var(--color-texto);
     font-size: 1rem;
     font-family: var(--fuente-principal);
@@ -436,9 +462,9 @@ form input[type="password"] {
 .formulario input:focus,
 form input:focus {
     outline: none;
-    border-color: var(--color-primario);
-    box-shadow: 0 0 0 3px rgba(177, 230, 209, 0.2);
-    background: rgba(39, 10, 51, 0.7);
+    border-color: var(--color-secundario);
+    box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.1);
+    background-color: var(--fondo-claro);
 }
 
 .formulario button[type="submit"],
@@ -450,13 +476,12 @@ form button[type="submit"] {
 
 /* Formularios de administración */
 form {
-    background: rgba(69, 26, 62, 0.6);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--color-terciario);
+    background-color: var(--fondo-claro);
+    border: 1px solid var(--fondo-medio);
     border-radius: var(--border-radius-md);
     padding: var(--espaciado-lg);
     margin-bottom: var(--espaciado-xl);
-    box-shadow: var(--sombra-md);
+    box-shadow: var(--sombra-sm);
 }
 
 form label {
@@ -477,17 +502,16 @@ form br {
 .container-account {
     max-width: 700px;
     margin: 0 auto var(--espaciado-xl) auto;
-    background: rgba(69, 26, 62, 0.6);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--color-terciario);
+    background-color: var(--blanco);
+    border: 1px solid var(--fondo-medio);
     border-radius: var(--border-radius-lg);
     padding: var(--espaciado-xl);
-    box-shadow: var(--sombra-lg);
+    box-shadow: var(--sombra-md);
 }
 
 .account-details {
-    background: rgba(39, 10, 51, 0.5);
-    border: 1px solid var(--color-terciario);
+    background-color: var(--fondo-claro);
+    border: 1px solid var(--fondo-medio);
     border-radius: var(--border-radius-md);
     padding: var(--espaciado-lg);
     margin: var(--espaciado-lg) 0;
@@ -502,14 +526,15 @@ form br {
     display: inline-block;
     margin: var(--espaciado-sm) var(--espaciado-sm) 0 0;
     padding: var(--espaciado-sm) var(--espaciado-md);
-    background: linear-gradient(135deg, var(--color-secundario), var(--color-terciario));
-    color: var(--color-texto);
+    background-color: var(--color-secundario);
+    color: var(--blanco);
     border-radius: var(--border-radius-sm);
     transition: all var(--transicion-normal);
     box-shadow: var(--sombra-sm);
 }
 
 .container-account a:hover {
+    background-color: var(--color-primario);
     transform: translateY(-2px);
     box-shadow: var(--sombra-md);
 }
@@ -520,17 +545,16 @@ form br {
 .historial-container {
     max-width: 1000px;
     margin: 0 auto;
-    background: rgba(69, 26, 62, 0.6);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--color-terciario);
+    background-color: var(--fondo-claro);
+    border: 1px solid var(--fondo-medio);
     border-radius: var(--border-radius-lg);
     padding: var(--espaciado-lg);
-    box-shadow: var(--sombra-lg);
+    box-shadow: var(--sombra-md);
 }
 
 .historial-item {
-    background: rgba(39, 10, 51, 0.5);
-    border: 1px solid var(--color-terciario);
+    background-color: var(--blanco);
+    border: 1px solid var(--fondo-medio);
     border-radius: var(--border-radius-md);
     padding: var(--espaciado-md);
     margin-bottom: var(--espaciado-md);
@@ -538,8 +562,8 @@ form br {
 }
 
 .historial-item:hover {
-    border-color: var(--color-primario);
-    box-shadow: var(--sombra-md);
+    border-color: var(--color-terciario);
+    box-shadow: var(--sombra-sm);
 }
 
 /* ============================================
@@ -548,11 +572,34 @@ form br {
 .mensaje-vacio {
     text-align: center;
     padding: var(--espaciado-xl);
-    background: rgba(69, 26, 62, 0.4);
-    border: 2px dashed var(--color-terciario);
+    background-color: var(--fondo-claro);
+    border: 2px dashed var(--fondo-medio);
     border-radius: var(--border-radius-md);
     color: var(--color-texto-secundario);
     font-size: 1.1rem;
+}
+
+/* ============================================
+   BADGES Y ETIQUETAS
+   ============================================ */
+.badge {
+    background-color: var(--color-advertencia);
+    color: var(--color-primario);
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.badge-success {
+    background-color: var(--color-acento);
+    color: var(--color-primario);
+}
+
+.badge-error {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--color-error);
 }
 
 /* ============================================
@@ -623,7 +670,7 @@ form br {
    ACCESIBILIDAD Y ESTADOS FOCUS
    ============================================ */
 *:focus-visible {
-    outline: 3px solid var(--color-primario);
+    outline: 3px solid var(--color-secundario);
     outline-offset: 2px;
 }
 
@@ -667,14 +714,14 @@ form br {
 }
 
 /* ============================================
-   ANIMACIONES ADICIONALES
+   ANIMACIONES ADICIONALES SUTILES
    ============================================ */
 @keyframes pulse {
     0%, 100% {
         opacity: 1;
     }
     50% {
-        opacity: 0.7;
+        opacity: 0.8;
     }
 }
 
@@ -689,4 +736,202 @@ form br {
 
 .slide-in {
     animation: slideIn 0.5s ease;
+}
+
+/* Animación suave de crecimiento */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.scale-in {
+    animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   IMÁGENES DECORATIVAS
+   ============================================ */
+
+/* Contenedor para decoraciones en header */
+.header-decoration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--espaciado-md);
+    margin-bottom: var(--espaciado-lg);
+    flex-wrap: wrap;
+}
+
+.header-decoration img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    animation: floatBounce 3s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(45, 95, 63, 0.15));
+}
+
+/* Animaciones de rebote suave */
+@keyframes floatBounce {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-10px) scale(1.02);
+    }
+}
+
+/* Diferentes delays para crear efecto natural */
+.header-decoration img:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.header-decoration img:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.header-decoration img:nth-child(3) {
+    animation-delay: 1s;
+}
+
+/* Imagen decorativa para estados vacíos */
+.empty-state {
+    text-align: center;
+    padding: var(--espaciado-xl);
+    background-color: var(--fondo-claro);
+    border: 2px dashed var(--fondo-medio);
+    border-radius: var(--border-radius-lg);
+    margin: var(--espaciado-lg) 0;
+}
+
+.empty-state-image {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin: 0 auto var(--espaciado-md) auto;
+    display: block;
+    opacity: 0.7;
+    filter: drop-shadow(0 4px 12px rgba(45, 95, 63, 0.1));
+}
+
+.empty-state p {
+    color: var(--color-texto-secundario);
+    font-size: 1.1rem;
+    margin-top: var(--espaciado-sm);
+}
+
+/* Decoración lateral flotante */
+.side-decoration {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    z-index: 100;
+    pointer-events: none;
+    animation: gentleFloat 4s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+.side-decoration img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(45, 95, 63, 0.2));
+}
+
+@keyframes gentleFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-15px) rotate(2deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(-1deg);
+    }
+    75% {
+        transform: translateY(-12px) rotate(1deg);
+    }
+}
+
+/* Decoración en formularios */
+.form-decoration {
+    text-align: center;
+    margin-bottom: var(--espaciado-md);
+}
+
+.form-decoration img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+    filter: drop-shadow(0 4px 8px rgba(45, 95, 63, 0.15));
+}
+
+/* Banner decorativo con título */
+.page-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--espaciado-md);
+    margin-bottom: var(--espaciado-lg);
+    flex-wrap: wrap;
+}
+
+.page-banner img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    animation: subtleBounce 2s ease-in-out infinite;
+}
+
+@keyframes subtleBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.page-banner h1 {
+    margin: 0;
+}
+
+/* Responsive para decoraciones */
+@media screen and (max-width: 768px) {
+    .header-decoration img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .side-decoration {
+        width: 60px;
+        height: 60px;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .empty-state-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .page-banner img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .side-decoration {
+        display: none;
+    }
 }
