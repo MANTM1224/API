@@ -39,7 +39,7 @@
                         <form method="POST" action="/carrito/<%= usuarioID %>/agregar">
                             <input type="hidden" name="NombreProducto" value="<%= item.nombre %>">
                             <input type="number" name="cantidad" min="1" max="<%= item.stock %>" value="1" required>
-                            <button type="submit" class="agregar-carrito">Agregar al carrito</button>
+                            <button type="submit" class="agregar-carrito" onclick="agregarAlCarrito('<%= item.nombre %>', '<%= item.stock %>')">Agregar al carrito</button>
                         </form>
                     <% } else { %>
                         <a href="/iniciarSs" class="btn-iniciar-sesion">Inicia sesión para comprar</a>
@@ -48,5 +48,16 @@
         <% }); %>
         <% } %>
     </div>
+
+    <script>
+        function agregarAlCarrito(productoID,stock) {
+            if(stock <= 0) {
+                alert('Producto no disponible en stock.');
+                return false;
+            }
+            alert('Su ' + productoID + ' ha sido agregado al carrito.');
+            return true;
+        }
+    </script>
 </body>
 </html>
