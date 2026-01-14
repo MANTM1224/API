@@ -302,6 +302,8 @@ button:active {
     );
     transform: translate(-100%, -100%);
     transition: transform var(--transicion-lenta);
+    z-index: 0;
+    pointer-events: none;
 }
 
 .caja-producto:hover {
@@ -316,6 +318,15 @@ button:active {
 
 .definicion-producto {
     flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.caja-producto > a,
+.caja-producto > form,
+.caja-producto > button {
+    position: relative;
+    z-index: 1;
 }
 
 .definicion-producto h2 {

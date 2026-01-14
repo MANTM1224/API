@@ -37,6 +37,7 @@
                         <p>Categoria: <%= item.categoria %></p>
                         <p>Cantidad disponible: <%= item.stock %></p>
                     </div>
+                    <a href="/modificarProducto/<%= item.ID %>">test</a>
                     <form method="POST" action="/manipularProductos/eliminar/<%= item.ID %>" onsubmit="return confirm('¿Eliminar este producto?')">
                         <button type="submit" class="btn-eliminar-producto">Eliminar el producto</button>
                     </form>
