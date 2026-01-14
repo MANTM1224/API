@@ -11,10 +11,13 @@
         <nav>
             <% if(!usuarioID) { %>
                 <a href="/iniciarSs" class="btn-iniciar-sesion">Iniciar Sesión</a>   
-                <% } else { %>
+                <% } else{ %>
                     <a href="/carrito/<%= usuarioID %>" class="btn-carrito">Ver Carrito</a>
                     <a href="/historial/<%= usuarioID %>" class="btn-historial">Ver Historial</a>
                     <a href="/cuenta/<%= usuarioID %>" class="btn-cuenta">Mi Cuenta</a>
+                    <%  if(usuarioID === '0') { %>
+                        <a href="/productos" class="btn-productos">Administrar Productos</a>
+                    <% } %>
             <% } %>
         </nav>
     </div>
@@ -30,7 +33,7 @@
                         <h2><%= item.nombre %></h2>
                         <p>Precio: $<%= item.precio %></p>
                         <p>Categoria: <%= item.categoria %></p>
-                        <p>Cantidad disponible: <%= item.stock %></p>
+                        <p>Cantidad disponible: <%= item.stock >= 0 ? item.stock : 'No disponible' %></p>
                     </div>
                     <% if(usuarioID) { %>
                         <form method="POST" action="/carrito/<%= usuarioID %>/agregar">
