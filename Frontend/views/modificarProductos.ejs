@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar Producto</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <h1>Modifica la informacion del Producto</h1>
@@ -14,8 +15,8 @@
         <label for="precio">Precio:</label>
         <input type="number" id="precio" name="precio" step="0.01" required value="<%= producto.precio %>"><br>
 
-        <label for="categoria">Categoría:</label>
-        <input type="text" id="categoria" name="categoria" required value="<%= producto.categoria %>"><br>
+        <label for="categoryid">Categoría ID:</label>
+        <input type="number" id="categoryid" name="categoryid" required value="<%= producto.categoria %>"><br>
 
         <label for="stock">Cantidad en stock:</label>
         <input type="number" id="stock" name="stock" required value="<%= producto.stock %>"><br>

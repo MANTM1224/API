@@ -15,7 +15,9 @@
                     <a href="/carrito/<%= usuarioID %>" class="btn-carrito">Ver Carrito</a>
                     <a href="/historial/<%= usuarioID %>" class="btn-historial">Ver Historial</a>
                     <a href="/cuenta/<%= usuarioID %>" class="btn-cuenta">Mi Cuenta</a>
+                    
                     <%  if(usuarioID === '0') { %>
+                    
                         <a href="/productos" class="btn-productos">Administrar Productos</a>
                     <% } %>
             <% } %>

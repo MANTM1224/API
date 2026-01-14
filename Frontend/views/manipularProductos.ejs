@@ -37,24 +37,14 @@
                         <p>Categoria: <%= item.categoria %></p>
                         <p>Cantidad disponible: <%= item.stock %></p>
                     </div>
-<<<<<<< HEAD
                     <form method="POST" action="/manipularProductos/eliminar/<%= item.ID %>" onsubmit="return confirm('¿Eliminar este producto?')">
                         <button type="submit" class="btn-eliminar-producto">Eliminar el producto</button>
                     </form>
-=======
-                    <button class="btn-eliminar-producto" data-id="<%= item.ID %>">Eliminar el producto</button>
-                    <button class="btn-modificar-producto" data-id="<%= item.ID %>">Modificar el producto</button>
->>>>>>> b7c9e3485fea64301b727a836ffa3d9c679e9326
+                    <a class="btn-modificar-producto" href="/modificarProducto/<%= item.ID %>">Modificar el producto</a>
                 </div>
         <% }); %>
         <% } %>
     </div>
-<<<<<<< HEAD
-    <h2>Regresar <a href="/">a la tienda</a></h2>
-=======
     <h2 class="btn-regresar">Regresar <a href="/">a la tienda</a></h2>
-
-    <script src="/js/productos.js"></script>
->>>>>>> b7c9e3485fea64301b727a836ffa3d9c679e9326
 </body>
 </html>

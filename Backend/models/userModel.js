@@ -28,6 +28,7 @@ export async function buscarUsuarioPorUsername(username) {
 export async function validarCredenciales(username, password) {
     const sql = 'SELECT * FROM usuario WHERE UserName = ? AND Contraseña = ?';
     const [rows] = await db.execute(sql, [username, password]);
+    console.log('ValidarCredenciales result:', rows);
     return rows[0];
 }
 

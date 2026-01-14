@@ -29,9 +29,7 @@
                 <% }); %>
                 <p>Total a pagar: $<%= carrito.reduce((total, item) => total + item.Precio * item.cantidad, 0).toFixed(2) %></p>
             <% } %>
-            <form method="POST" action="/carrito/<%= usuarioID %>/vaciar" onsubmit="return confirm('¿Estás seguro de que deseas vaciar tu carrito?')">
-                <button type="submit" id="clear-cart-btn">Vaciar carrito</button>
-            </form>
+           
             <select id="metodo-pago-select">
                 <option>Seleccionar metodo de pago </option>
                 <option id="Tarjeta-electronica" value="Tarjeta-electronica">Tarjeta de Credito/Debito</option>

@@ -9,7 +9,13 @@ import { EliminarProducto, TraerCarrito, VaciarCarrito } from '../models/Carrito
 import { obtenerVentasPorUsuario, registrarVenta } from '../models/ventasModel.js';
 import { format } from 'date-fns';
 import { AgregarAlCarrito } from '../models/CarritoModel.js';
-import { cargarInventario, crearProductoInventario, eliminarProductoInventario } from '../models/inventariomodel.js';
+import {
+    actualizarProductoInventario,
+    cargarInventario,
+    crearProductoInventario,
+    eliminarProductoInventario,
+    obtenerProductoInventarioPorId
+} from '../models/inventariomodel.js';
 
 const router = Router();
 
@@ -168,6 +174,44 @@ router.post('/manipularProductos/eliminar/:id', async (req, res) => {
         console.error('Error POST /manipularProductos/eliminar:', err);
     }
     res.redirect('/manipularProductos');
+});
+
+// Editar producto (administrador)
+router.get('/modificarProducto/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const prod = await obtenerProductoInventarioPorId(id);
+        if (!prod) return res.redirect('/manipularProductos');
+
+        const producto = {
+            ID: prod.ID,
+            nombre: prod.Nombre,
+            precio: prod.Precio,
+            categoria: prod.Categoria,
+            stock: prod.Stock
+        };
+
+        return res.render('modificarProductos', { producto });
+    } catch (err) {
+        console.error('Error render /modificarProducto:', err);
+        return res.redirect('/manipularProductos');
+    }
+});
+
+router.post('/modificarProducto/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const { nombre, precio, categoryid, stock } = req.body;
+        await actualizarProductoInventario(id, {
+            nombre,
+            precio: Number(precio),
+            categoria: categoryid,
+            stock: Number(stock)
+        });
+    } catch (err) {
+        console.error('Error POST /modificarProducto:', err);
+    }
+    return res.redirect('/manipularProductos');
 });
 
 // Carrito del usuario
