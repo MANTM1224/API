@@ -23,6 +23,9 @@ async function AgregarAlCarrito(usuarioID, NombreProducto, cantidad) {
         console.log('Usuario query result:', users);
         const user = users && users[0];
         if (!user) return { success: false, message: 'Usuario no encontrado' };
+        // Verificar si la cuenta está activa
+        const userActive = user.Activo ?? user.activo ?? user.active ?? true;
+        if (!userActive) return { success: false, message: 'Cuenta inactiva. No se pueden agregar productos.' };
 
         const precio = producto.Precio ?? producto.precio ?? producto.Price ?? producto.PrecioUnitario;
         const prodId = producto.ID ?? producto.id;
@@ -51,9 +54,27 @@ async function TraerCarrito(UsuarioID) {
 
 async function EliminarProducto(carritoID, usuarioID) {
     try {
-        await queryAsync('UPDATE carrito SET cantidad = cantidad - 1 WHERE ID = ? AND usuario = ?', [carritoID, usuarioID]);
-        await queryAsync('UPDATE inventario SET stock = stock + 1 WHERE ID = (SELECT producto FROM carrito WHERE ID = ?)', [carritoID]);
-        return { success: true, message: 'Producto eliminado del carrito exitosamente' };
+        // Obtener la fila del carrito
+        const rows = await queryAsync('SELECT cantidad, producto FROM carrito WHERE ID = ? AND usuario = ? LIMIT 1', [carritoID, usuarioID]);
+        const row = rows && rows[0];
+        if (!row) return { success: false, message: 'Elemento del carrito no encontrado' };
+
+        const currentCantidad = Number(row.cantidad ?? 0);
+        const productoId = row.producto;
+
+        if (currentCantidad > 1) {
+            // Decrementar cantidad
+            await queryAsync('UPDATE carrito SET cantidad = cantidad - 1 WHERE ID = ? AND usuario = ?', [carritoID, usuarioID]);
+            // Devolver 1 unidad al stock
+            await queryAsync('UPDATE inventario SET Stock = Stock + 1 WHERE ID = ?', [productoId]);
+            return { success: true, message: 'Se redujo la cantidad en el carrito y se devolvió 1 unidad al stock' };
+        } else {
+            // currentCantidad <= 1 -> eliminar registro
+            await queryAsync('DELETE FROM carrito WHERE ID = ? AND usuario = ?', [carritoID, usuarioID]);
+            // Devolver 1 unidad al stock
+            await queryAsync('UPDATE inventario SET Stock = Stock + 1 WHERE ID = ?', [productoId]);
+            return { success: true, message: 'Producto eliminado del carrito y stock actualizado' };
+        }
     } catch (err) {
         console.error('Error EliminarProducto:', err);
         return { success: false, message: 'Error al eliminar el producto del carrito' };
