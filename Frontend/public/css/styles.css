@@ -69,6 +69,11 @@ html {
 body {
     font-family: var(--fuente-principal);
     background-color: var(--blanco);
+    background-image: url('/images/decorations/Fondo-Pantalla.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: var(--color-texto);
     line-height: 1.6;
     min-height: 100vh;
@@ -305,6 +310,30 @@ button:active {
     box-shadow: 0 6px 20px rgba(193, 124, 91, 0.3);
 }
 
+/* Botón de administración de productos */
+.btn-productos {
+    background-color: var(--color-primario);
+    color: var(--blanco);
+    padding: var(--espaciado-sm) var(--espaciado-lg);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transicion-normal);
+    box-shadow: var(--sombra-sm);
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.btn-productos:hover {
+    background-color: var(--color-secundario);
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-md);
+    color: var(--blanco);
+}
+
 /* ============================================
    CONTENEDORES DE PRODUCTOS
    ============================================ */
@@ -410,6 +439,46 @@ button:active {
     outline: none;
     border-color: var(--color-secundario);
     box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.1);
+}
+
+/* Selector de pago */
+.selector-pago {
+    width: 100%;
+    padding: var(--espaciado-sm);
+    border: 2px solid var(--fondo-medio);
+    border-radius: var(--border-radius-sm);
+    background-color: var(--blanco);
+    color: var(--color-texto);
+    font-size: 1rem;
+    font-family: var(--fuente-principal);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transicion-normal);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%232D5F3F' d='M1.41 0L6 4.58 10.59 0 12 1.42l-6 6-6-6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--espaciado-sm) center;
+    background-size: 12px;
+    padding-right: calc(var(--espaciado-md) + 20px);
+    margin: var(--espaciado-md) 0;
+}
+
+.selector-pago:hover {
+    border-color: var(--color-terciario);
+    background-color: var(--fondo-claro);
+}
+
+.selector-pago:focus {
+    outline: none;
+    border-color: var(--color-secundario);
+    box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.1);
+    background-color: var(--fondo-claro);
+}
+
+.selector-pago option {
+    padding: var(--espaciado-sm);
+    background-color: var(--blanco);
+    color: var(--color-texto);
 }
 
 /* ============================================
@@ -542,12 +611,10 @@ form button[type="submit"] {
 
 /* Formularios de administración */
 form {
-    background-color: var(--fondo-claro);
-    border: 1px solid var(--fondo-medio);
-    border-radius: var(--border-radius-md);
-    padding: var(--espaciado-lg);
-    margin-bottom: var(--espaciado-xl);
-    box-shadow: var(--sombra-sm);
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin-bottom: var(--espaciado-md);
 }
 
 form label {
@@ -696,11 +763,6 @@ form br {
         align-items: center;
     }
     
-    form {
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-    }
 }
 
 /* Desktop (min-width: 1024px) */
