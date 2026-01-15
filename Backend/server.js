@@ -10,6 +10,7 @@ import inventarioroutes from './routes/inventarioroutes.js';
 import userRoutes from './routes/userRoutes.js';
 import renderRoutes from './routes/renderRoutes.js';
 import carritoRoutes from './routes/carritoroutes.js';
+import adminRoutes from './routes/adminRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -32,6 +33,7 @@ app.use('/css', express.static(path.join(__dirname, '../Frontend/public/css')));
 app.use('/', renderRoutes);
 app.use('/user', userRoutes);
 app.use('/api/carrito', carritoRoutes);
+app.use('/admin', adminRoutes);
 
 //vamos a consumir las rutas (página principal)
 app.use('/', inventarioroutes);

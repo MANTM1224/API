@@ -169,6 +169,61 @@ a:hover {
     color: var(--color-primario);
 }
 
+/* ============================================
+   TOASTS
+   ============================================ */
+.toast {
+    position: fixed;
+    top: var(--espaciado-md);
+    right: var(--espaciado-md);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: var(--espaciado-sm);
+    padding: var(--espaciado-sm) var(--espaciado-md);
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--sombra-md);
+    color: var(--blanco);
+    background: var(--color-error);
+    animation: toast-in var(--transicion-normal) both;
+}
+
+.toast-message {
+    font-weight: 600;
+}
+
+.toast-close {
+    background: transparent;
+    color: var(--blanco);
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.toast-hide {
+    animation: toast-out var(--transicion-normal) both;
+}
+
+@keyframes toast-in {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes toast-out {
+    to {
+        opacity: 0;
+        transform: translateY(-8px);
+        pointer-events: none;
+    }
+}
+
 /* Botones base */
 button,
 .btn-iniciar-sesion,
