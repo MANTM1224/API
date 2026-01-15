@@ -21,8 +21,9 @@
         <label for="stock">Cantidad en stock:</label>
         <input type="number" id="stock" name="stock" required value="<%= producto.stock %>"><br>
 
-        <button type="submit" onclick="return confirm('¿Estás seguro de que deseas guardar los cambios?')">Guardar cambios</button>
+        <button type="submit" onclick="return validarProducto() && confirm('¿Estás seguro de que deseas guardar los cambios?')">Guardar cambios</button>
     </form>
     <h2>Regresar <a href="/manipularProductos">a la gestión de productos</a></h2>
+    <script src="/js/validaciones.js"></script>
 </body>
 </html>

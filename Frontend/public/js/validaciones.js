@@ -104,3 +104,23 @@ function validarIniciarSesion(){
     }
     return true;
 }
+
+function validarProducto(){
+    var nombre = document.getElementById("nombre").value;
+    var precio = document.getElementById("precio").value;
+    var categoria = document.getElementById("categoryid").value;
+    var stock = document.getElementById("stock").value;
+
+    if(!nombre || !precio || !categoria || !stock){
+        alert("Por favor, complete todos los campos.");
+        return false;
+    }
+    if(isNaN(precio) || precio <= 0){
+        alert("Por favor, ingrese un precio válido.");
+        return false;
+    }
+    if(isNaN(stock) || stock < 0 || !Number.isInteger(Number(stock))){
+        alert("Por favor, ingrese una cantidad de stock válida.");
+        return false;
+    }
+}
