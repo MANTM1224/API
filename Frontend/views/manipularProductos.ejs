@@ -8,7 +8,13 @@
 </head>
 <body>
     <h1>Agrega nuevos productos</h1>
-    <form id="addProductForm" method="POST" action="/manipularProductos/agregar">
+    <% if (typeof error !== 'undefined' && error) { %>
+        <div id="toast" class="toast toast-error" role="alert" aria-live="assertive">
+            <span class="toast-message"><%= error %></span>
+            <button type="button" class="toast-close" aria-label="Cerrar">×</button>
+        </div>
+    <% } %>
+    <form id="addProductForm" method="POST" action="/admin/manipularProductos/agregar">
         <label for="nombre">Nombre del producto:</label>
         <input type="text" id="nombre" name="nombre" required><br>
 
@@ -37,8 +43,8 @@
                         <p>Categoria: <%= item.categoria %></p>
                         <p>Cantidad disponible: <%= item.stock %></p>
                     </div>
-                    <a href="/modificarProducto/<%= item.ID %>">Modificar la información</a>
-                    <form method="POST" action="/manipularProductos/eliminar/<%= item.ID %>" onsubmit="return confirm('¿Eliminar este producto?')">
+                    <a href="/admin/modificarProducto/<%= item.ID %>">Modificar la información</a>
+                    <form method="POST" action="/admin/manipularProductos/eliminar/<%= item.ID %>" onsubmit="return confirm('¿Eliminar este producto?')">
                         <button type="submit" class="btn-eliminar-producto">Eliminar el producto</button>
                     </form>
                 </div>
@@ -47,5 +53,19 @@
     </div>
     <h2>Regresar <a href="/">a la tienda</a></h2>
     <script src="/js/validaciones.js"></script>
+    <% if (typeof error !== 'undefined' && error) { %>
+    <script>
+        (function () {
+            const toast = document.getElementById('toast');
+            if (!toast) return;
+            const closeBtn = toast.querySelector('.toast-close');
+            const hide = () => toast.classList.add('toast-hide');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', hide);
+            }
+            setTimeout(hide, 4000);
+        })();
+    </script>
+    <% } %>
 </body>
 </html>

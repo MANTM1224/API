@@ -9,13 +9,12 @@ import { EliminarProducto, TraerCarrito, VaciarCarrito } from '../models/Carrito
 import { obtenerVentasPorUsuario, registrarVenta } from '../models/ventasModel.js';
 import { format } from 'date-fns';
 import { AgregarAlCarrito } from '../models/CarritoModel.js';
+import { cargarInventario, obtenerProductoInventarioPorId } from '../models/inventariomodel.js';
 import {
-    actualizarProductoInventario,
-    cargarInventario,
-    crearProductoInventario,
-    eliminarProductoInventario,
-    obtenerProductoInventarioPorId
-} from '../models/inventariomodel.js';
+    crearProductoAdmin,
+    actualizarProductoAdmin,
+    eliminarProductoAdmin
+} from '../models/adminModel.js';
 
 const router = Router();
 
@@ -154,7 +153,7 @@ router.get('/manipularProductos', async (req, res) => {
 router.post('/manipularProductos/agregar', async (req, res) => {
     try {
         const { nombre, precio, categoryid, stock } = req.body;
-        await crearProductoInventario({
+        await crearProductoAdmin({
             nombre,
             precio: Number(precio),
             categoria: categoryid,
@@ -169,7 +168,7 @@ router.post('/manipularProductos/agregar', async (req, res) => {
 router.post('/manipularProductos/eliminar/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        await eliminarProductoInventario(id);
+        await eliminarProductoAdmin(id);
     } catch (err) {
         console.error('Error POST /manipularProductos/eliminar:', err);
     }
@@ -202,7 +201,7 @@ router.post('/modificarProducto/:id', async (req, res) => {
     const { id } = req.params;
     try {
         const { nombre, precio, categoryid, stock } = req.body;
-        await actualizarProductoInventario(id, {
+        await actualizarProductoAdmin(id, {
             nombre,
             precio: Number(precio),
             categoria: categoryid,
