@@ -499,6 +499,7 @@ button:active {
     flex-direction: column;
     gap: var(--espaciado-md);
     margin-top: var(--espaciado-lg);
+    background-color: var(--blanco);
 }
 
 .carrito-item {
