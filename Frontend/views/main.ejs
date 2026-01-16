@@ -44,7 +44,37 @@
                     <div class="definicion-producto">
                         <h2><%= item.nombre %></h2>
                         <p>Precio: $<%= item.precio %></p>
-                        <p>Categoria: <%= item.categoria %></p>
+                        <p>Categoria: 
+                            <% switch(item.categoria) {
+                                case 1:
+                                    %>Plantas de interior<%
+                                    break;
+                                case 2:
+                                    %>Plantas de exterior<%
+                                    break;
+                                case 3:
+                                    %>Herramientas<%
+                                    break;
+                                case 4:
+                                    %>Macetas<%
+                                    break;
+                                case 5:
+                                    %>Fertilizantes y sustratos<%
+                                    break;
+                                case 6:
+                                    %>Semillas<%
+                                    break;
+                                case 7:
+                                    %>Decoración de jardín<%
+                                    break;
+                                case 8:
+                                    %>Riego<%
+                                    break;
+                                default:
+                                    %>Otros<%
+                            }
+                        %>
+                        </p>
                         <p>Cantidad disponible: <%= item.stock >= 0 ? item.stock : 'No disponible' %></p>
                     </div>
                     <% if(usuarioID) { %>

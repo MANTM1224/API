@@ -7,23 +7,66 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <h1>Modifica la informacion del Producto</h1>
-    <form action="/admin/modificarProducto/<%= producto.ID %>" method="POST">
-        <label for="nombre">Nombre del producto:</label>
-        <input type="text" id="nombre" name="nombre" required value="<%= producto.nombre %>"><br>
+    <h1>Modificar Producto</h1>
+    
+    <div class="modificar-producto-container">
+        <div class="formulario-modificar-producto">
+            <h2>Editar Información</h2>
+            <form action="/admin/modificarProducto/<%= producto.ID %>" method="POST">
+                <div class="form-group">
+                    <label for="nombre">Nombre del producto:</label>
+                    <input type="text" id="nombre" name="nombre" required value="<%= producto.nombre %>">
+                </div>
 
-        <label for="precio">Precio:</label>
-        <input type="number" id="precio" name="precio" step="0.1" required value="<%= producto.precio %>"><br>
+                <div class="form-group">
+                    <label for="precio">Precio:</label>
+                    <input type="number" id="precio" name="precio" step="0.1" required value="<%= producto.precio %>">
+                </div>
 
-        <label for="categoryid">Categoría ID:</label>
-        <input type="number" id="categoryid" name="categoryid" required value="<%= producto.categoria %>"><br>
+                <div class="form-group">
+                    <label for="categoryid">Categoría ID:</label>
+                    <input type="number" id="categoryid" name="categoryid" required value="<%= producto.categoria %>">
+                </div>
 
-        <label for="stock">Cantidad en stock:</label>
-        <input type="number" id="stock" name="stock" required value="<%= producto.stock %>"><br>
+                <div class="form-group">
+                    <label for="stock">Cantidad en stock:</label>
+                    <input type="number" id="stock" name="stock" required value="<%= producto.stock %>">
+                </div>
 
-        <button type="submit" onclick="return validarProducto() && confirm('¿Estás seguro de que deseas guardar los cambios?')">Guardar cambios</button>
-    </form>
-    <h2>Regresar <a href="/admin/manipularProductos">a la gestión de productos</a></h2>
+                <button type="submit" onclick="return validarProducto() && confirm('¿Estás seguro de que deseas guardar los cambios?')">Guardar Cambios</button>
+            </form>
+        </div>
+        
+        <div class="preview-producto">
+            <h2>Vista Previa</h2>
+            <div class="producto-preview-card">
+                <div class="preview-header">
+                    <span class="preview-label">Producto ID:</span>
+                    <span class="preview-value"><%= producto.ID %></span>
+                </div>
+                <div class="preview-item">
+                    <span class="preview-label">Nombre:</span>
+                    <span class="preview-value" id="preview-nombre"><%= producto.nombre %></span>
+                </div>
+                <div class="preview-item">
+                    <span class="preview-label">Precio:</span>
+                    <span class="preview-value preview-precio" id="preview-precio">$<%= producto.precio %></span>
+                </div>
+                <div class="preview-item">
+                    <span class="preview-label">Categoría:</span>
+                    <span class="preview-value" id="preview-categoria"><%= producto.categoria %></span>
+                </div>
+                <div class="preview-item">
+                    <span class="preview-label">Stock:</span>
+                    <span class="preview-value preview-stock" id="preview-stock"><%= producto.stock %> unidades</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="admin-footer">
+        <h2>Regresar <a href="/admin/manipularProductos">a la gestión de productos</a></h2>
+    </div>
     <script src="/js/validaciones.js"></script>
 </body>
 </html>

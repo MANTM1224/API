@@ -7,31 +7,47 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <h1>Agrega nuevos productos</h1>
+    <h1>Administrar Productos</h1>
     <% if (typeof error !== 'undefined' && error) { %>
         <div id="toast" class="toast toast-error" role="alert" aria-live="assertive">
             <span class="toast-message"><%= error %></span>
             <button type="button" class="toast-close" aria-label="Cerrar">×</button>
         </div>
     <% } %>
-    <form id="addProductForm" method="POST" action="/admin/manipularProductos/agregar">
-        <label for="nombre">Nombre del producto:</label>
-        <input type="text" id="nombre" name="nombre" required><br>
-
-        <label for="precio">Precio:</label>
-        <input type="number" id="precio" name="precio" step="0.01" required><br>
-
-        <label for="categoryid">Categoría ID:</label>
-        <input type="number" id="categoryid" name="categoryid" required><br>
-
-        <label for="stock">Cantidad en stock:</label>
-        <input type="number" id="stock" name="stock" required><br>
-
-        <button type="submit" onclick="return validarProducto()">Agregar Producto</button>
-    </form>
     
-    <h1>Modifica los productos</h1>
-    <div class="container-productos">
+    <div class="manipular-productos-layout">
+        <!-- Formulario de Agregar Producto -->
+        <div class="formulario-agregar-producto">
+            <h2>Agregar Nuevo Producto</h2>
+            <form id="addProductForm" method="POST" action="/admin/manipularProductos/agregar">
+                <div class="form-group">
+                    <label for="nombre">Nombre del producto:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="precio">Precio:</label>
+                    <input type="number" id="precio" name="precio" step="0.01" max="10000" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="categoryid">Categoría ID:</label>
+                    <input type="number" id="categoryid" name="categoryid" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="stock">Cantidad en stock:</label>
+                    <input type="number" id="stock" name="stock" required>
+                </div>
+
+                <button type="submit" onclick="return validarProducto()">Agregar Producto</button>
+            </form>
+        </div>
+        
+        <!-- Lista de Productos -->
+        <div class="lista-productos-admin">
+            <h2>Productos Registrados</h2>
+            <div class="container-productos">
         <% if(productos.length === 0) { %>
             <p>No hay productos registrados en este momento.</p>
         <% } else { %>

@@ -118,6 +118,9 @@ function validarProducto(){
     if(isNaN(precio) || precio <= 0){
         alert("Por favor, ingrese un precio válido.");
         return false;
+    }else if (precio > 10000){
+        alert("El precio no puede ser mayor a 10,000.");
+        return false;
     }
     if(isNaN(stock) || stock < 0 || !Number.isInteger(Number(stock))){
         alert("Por favor, ingrese una cantidad de stock válida.");
