@@ -127,3 +127,59 @@ function validarProducto(){
         return false;
     }
 }
+
+function validarCantidad(stockDisponible){
+    var cantidad = document.getElementById("cantidad").value;
+
+    if(!cantidad){
+        alert("Por favor, ingrese una cantidad.");
+        return false;
+    }
+    if(isNaN(cantidad) || cantidad <= 0 || !Number.isInteger(Number(cantidad))){
+        alert("Por favor, ingrese una cantidad válida.");
+        return false;
+    }
+    if(cantidad > 10){
+        alert("La cantidad máxima por producto es 10.");
+        return false;
+    }
+    if(stockDisponible && cantidad > stockDisponible){
+        alert("No hay suficiente stock disponible. Stock disponible: " + stockDisponible);
+        return false;
+    }
+
+    return true;
+}
+
+function agregarAlCarrito(nombreProducto, stock) {
+    // Obtener la cantidad ingresada
+    var cantidadInput = event.target.closest('form').querySelector('input[name="cantidad"]');
+    var cantidad = cantidadInput ? parseInt(cantidadInput.value) : 1;
+    
+    // Validar que haya stock disponible
+    if(stock <= 0) {
+        alert('Producto no disponible en stock.');
+        return false;
+    }
+    
+    // Validar la cantidad ingresada
+    if(!cantidad || cantidad <= 0){
+        alert("Por favor, ingrese una cantidad válida.");
+        return false;
+    }
+    
+    if(cantidad > stock){
+        alert('No hay suficiente stock. Stock disponible: ' + stock);
+        return false;
+    }
+    
+    if(cantidad > 10){
+        alert('La cantidad máxima por producto es 10.');
+        return false;
+    }
+    
+    // Todo está correcto, mostrar mensaje de confirmación
+    alert('"' + nombreProducto + '" ha sido agregado al carrito.');
+    return true;
+}
+

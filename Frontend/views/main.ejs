@@ -80,27 +80,21 @@
                     <% if(usuarioID) { %>
                         <form method="POST" action="/carrito/<%= usuarioID %>/agregar">
                             <input type="hidden" name="NombreProducto" value="<%= item.nombre %>">
-                            <input type="number" name="cantidad" min="1" max="<%= item.stock %>" value="1" required>
-                            <button type="submit" class="agregar-carrito" onclick="agregarAlCarrito('<%= item.nombre %>', '<%= item.stock %>')">Agregar al carrito</button>
+                            <input type="number" name="cantidad" min="1" max="<%= Math.min(item.stock, 10) %>" value="1" required class="cantidad-input">
+                            <% if(!item.stock || item.stock <= 0) { %>
+                                <p class="sin-stock-mensaje">Producto sin stock</p>
+                            <% } else { %>
+                            <button type="submit" class="agregar-carrito" onclick="return agregarAlCarrito('<%= item.nombre %>', '<%= item.stock %>')">Agregar al carrito</button>
+                            <% } %>
                         </form>
                     <% } else { %>
                         <a href="/iniciarSs" class="btn-iniciar-sesion">Inicia sesión para comprar</a>
                     <% } %>
                 </div>
-        <% }); %>
+            <% }); %>
         <% } %>
     </div>
-
-    <script>
-        function agregarAlCarrito(productoID,stock) {
-            if(stock <= 0) {
-                alert('Producto no disponible en stock.');
-                return false;
-            }
-            alert('Su ' + productoID + ' ha sido agregado al carrito.');
-            return true;
-        }
-    </script>
+    <script src="/js/validaciones.js"></script>
 
     <!-- Decoración flotante lateral -->
     <div class="side-decoration">
